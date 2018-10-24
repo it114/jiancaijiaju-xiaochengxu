@@ -1,0 +1,46 @@
+<view class="container">
+		<view class="title">
+			<view class="icon"><image src="../../../icons/wechat.png"></image></view>
+			<view class="tit">进群信息登记</view>
+		</view>
+
+		<view class="input">
+				<text>*</text>
+				<input bindinput='watchUserWeixin' placeholder='微信昵称' value='{{weixin}}'></input>
+		</view>
+
+		<view class="input not_necessary">
+				<text></text>
+				<input bindinput='watchUserWeixinId' placeholder='微信号' value='{{weixinId}}'></input>
+		</view>
+
+		<view class="input not_necessary">
+				<text></text>
+				<input bindinput='watchUserPhone' placeholder='客户电话' value='{{phone}}'></input>
+		</view>
+
+		<view class="input">
+				<text>*</text>
+				<input bindinput='watchForm' placeholder='邀请渠道' value='{{form}}'></input>
+		</view>
+
+		<view class="input">
+				<text>*</text>
+				<input bindinput='watchBrand' placeholder='邀请品牌' value='{{brandsId}}'></input>
+		</view>
+
+		<view class="input">
+				<text>*</text>
+				<input placeholder='邀请导购' bindinput='watchShopping' value='{{shopping}}'></input>
+		</view>
+
+		<view class="input select_date">
+				<text>*</text>
+				<!-- <input placeholder='请选择日期' disabled='true'></input> -->
+				<picker mode="date" value="{{time}}" start="2000-01-01" end="2050-12-31" bindchange="bindDateChange">
+						<view class="picker">{{time}}</view>
+				</picker>
+		</view>
+
+		<view class="input submit" bindtap='submitInfo'>提交</view>
+</view>

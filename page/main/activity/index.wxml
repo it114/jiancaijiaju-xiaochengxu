@@ -1,0 +1,58 @@
+
+<view class="activity_page">
+    <image class="envelopes_page" src="../../../images/bg_02.png" wx:if="{{envelopesshow}}">
+
+          <!-- <progress class="progress_view" percent="20" show-info /> -->
+        <view wx:for="{{packetList}}" wx:for-index="index" wx:for-item="items" data-index="{{index}}" data-money="{{index}}" bindtap="clickpacket">
+           <image class="red-packet"  src="{{index==isSelect?items.clicksrc:items.src}}" style="position:fixed;top:{{items.top}}px;transform:rotate({{items.angle}}deg); left:{{items.left}}px;-webkit-transition:{{items.speed}}ms linear 0ms;transition:{{items.speed}}ms linear 0ms"></image>
+        </view>
+        <view>
+           <image class="prize-packet" bindtap="showDialog"  wx:if="{{selectview}}"  src="../../../images/open.png"></image>        
+        </view>
+        <view>
+           <image class="prize-packet"    wx:if="{{shareview}}"  src="../../../images/share.png">
+           <button open-type="share" plain="true" lang="zh_CN" class="share_btn"></button>
+           </image>  
+           <text class="prizeMoney" wx:if="{{shareview}}">{{prizeMoney}}元</text>
+
+           <image class="closepacket" bindtap="closepacket" src="../../../images/close.png" wx:if="{{shareview}}"></image>              
+        </view>
+    </image>
+    <view wx:if="{{!envelopesshow}}">
+       <image class="user_con" src="../../../images/homepage.png">
+        <image class="start_btn_bg" src="../../../images/button.png">
+         <text class="start_btn" bindtap="start_rain">马上开抢</text>
+        </image>
+        <view class="activity_info">
+         <text class="info_title">活动规则></text>
+         <view class="info_content">
+         <!-- <text>活动时间：{{start_time}}-{{end_time}}</text> -->
+         <text>活动规则：</text>
+         <text>1、红包金额0.66---100元随机领取；</text>
+         <text>2、用户需成功注册方可领取，红包金额达到限额即可提现</text>
+         <text>3、点击右上角分享给好友并注册，好友继续分享可再得奖</text>
+          <text>4、手机号码仅作为红包提现时核对的凭证，请您放心</text>
+         </view>   
+        </view>
+       </image>
+    </view>
+
+
+<view class="dialog_box" style="display:{{displayStatus}};">
+		<view class="db_mask" bindtap="hideDialog"></view>
+    <view class="db_body">
+      <view class="input_phone">
+        <label>手机号</label>
+        <input bindinput='watchPassPhone' placeholder='请输入手机号' name='username'></input>
+      </view>
+      <!-- <view class="input_vcode">
+        <label>验证码</label>      
+        <input bindinput='watchPassCode' placeholder='请输入验证码' name='psw'></input>
+        <view class='get_vcode' form-type='submit' style="background:{{isSend?'':'#999'}}" bindtap="getCode">{{currentTime}}</view>
+      </view> -->
+      <button class="submit" bindtap="bangPhone">提交</button>
+    </view>
+  </view>
+    
+</view>
+

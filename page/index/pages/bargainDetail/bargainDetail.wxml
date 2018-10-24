@@ -1,0 +1,22 @@
+<view class="container">
+  <view class="bargain_detail">
+    <view class="title">发现一件好货，快来一起砍价0元拿吧</view>
+      <view class="bargain_item">
+        <view class="left_img">
+          <image src="{{results.image}}" style='{{results.style}}'></image>
+        </view>
+        <view class="right_info"> 
+          <view class="item_title">{{results.attrName}}</view>
+          <view class="bargain_info">
+              <text class="price_tag">¥</text>
+              <text class="price">{{price}}</text>
+              <!-- <text class="number">{{itemNumber}}人已0元拿到</text> -->
+          </view> 
+        </view>
+      </view>
+  </view>
+
+  <view class="bargainMsg">已砍20.00元，还差36.00元</view>
+  <view class="share">分享给好友，多砍一刀</view>
+  <view class="countDown">还剩23:21:22:08结束，快来砍价吧~</view>
+</view>

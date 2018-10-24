@@ -1,0 +1,34 @@
+
+ <view class='swiper'>
+           <image src="../../../../images/tu.png"  mode="aspectFill" style='width:100%;height:280rpx;'/>
+        </view>
+<view class='container'>
+  <!-- <navigator url=  hover-class="none"> -->
+    <view class='list' wx:for="{{bargainList}}">
+      <view class='left'>
+        <image src='{{item.image}}'  mode="aspectFill"></image>
+      </view>
+      <view class='right'>
+        <view class='title'>
+          {{item.goodName}}
+        </view>
+          <view class='attr'>
+          {{item.attrName}}
+        </view>
+        <!-- <view class='notice'>{{item.takenNumber}}人已0元拿</view> -->
+        <view class='bottom_left'>特惠价{{item.price}}</view>
+        <view class='bottom_right' data-bid="{{item.id}}" bindtap="addBargain">砍价{{item.payPrice}}元得</view>
+      </view>
+    </view>
+  <!-- </navigator> -->
+</view>
+<view wx:if="{{showModel}}" class="model">
+  <view class="modelTitle">
+    温馨提示
+  </view>
+  <view class="modelBody">您已经有发起尚未结束的砍价活动！</view>
+  <view class="btns">
+    <button class="agree" bindtap="cancelThis" lang="zh_CN">确定</button>
+  </view>
+</view>
+<view wx:if="{{showModel}}" class="mask"></view>

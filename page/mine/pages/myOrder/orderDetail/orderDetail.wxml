@@ -1,0 +1,65 @@
+<view class="container">
+
+    <view class="top_info">
+
+        <view class="trade_status">
+            <text>{{orderInfo.statusName}}</text>
+        </view>
+
+    </view>
+
+    <view class="rcv_info">
+            <view class="info_top">
+                <text class="name">{{orderInfo.addressObj.name}}</text>
+                <text class="phone">{{orderInfo.addressObj.phone}}</text>
+            </view>
+
+            <image class="addr" src="../../../icons/location.png"></image>
+
+        <view class="info_btm">
+            <text>{{orderInfo.addressObj.areaName}}{{orderInfo.addressObj.info}}</text>
+        </view>
+    </view>
+
+    <view class="item_detail">
+        <view class="left_thumb">
+            <image src="{{orderInfo.image}}"></image>
+        </view>
+        <view class="right_info">
+            <view class="item_name">{{orderInfo.goodName}}</view>
+            <view class="item_spec">
+                <!-- 方形1.5*1.5 -->
+            </view>
+            <text class="item_price">¥{{orderInfo.orderFee}}</text>
+            <text class="item_number">x{{orderInfo.num}}</text>
+        </view>
+        <view class="btm_info">
+            <text>实付：</text>
+            <text class="pay">¥{{orderInfo.payFee}}</text>
+            <text>（免运费）</text>
+        </view>
+    </view>
+
+    <view class="order_tag">
+        <view>
+            <text>订单编号：</text>
+            <text>{{orderInfo.orderId}}</text>
+        </view>
+        <view>
+            <text>支付方式：</text>
+            <text>微信</text>
+        </view>
+        <view>
+            <text>下单时间：</text>
+            <text>{{orderInfo.payTime}}</text>
+        </view>
+        <!-- <view>
+            <text>发货时间：</text>
+            <text>2018-06-05 18：34</text>
+        </view>
+        <view>
+            <text>退款时间：</text>
+            <text>2018-06-05 18：34</text>
+        </view> -->
+    </view>
+</view>

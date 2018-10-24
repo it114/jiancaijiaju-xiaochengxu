@@ -1,0 +1,99 @@
+{
+    "pages": [
+        "page/main/index/index",
+        "page/main/activity/index",
+        "page/main/mine/mine",
+         "page/main/forum/forum"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "#999999",
+        "selectedColor": "#C4161E",
+        "backgroundColor": "#fff",
+        "borderStyle": "#fff",
+        "position": "bottom",
+        "list": [
+            {
+                "pagePath": "page/main/index/index",
+                "iconPath": "icon/index.png",
+                "selectedIconPath": "icon/index_sel.png",
+                "text": "首页"
+            },
+           {
+            "pagePath": "page/main/forum/forum",
+            "iconPath": "icon/forum.png",
+            "selectedIconPath": "icon/forum_sel.png",
+            "text": "圈子"
+          },
+          
+            {
+                "pagePath": "page/main/mine/mine",
+                "iconPath": "icon/mine.png",
+                "selectedIconPath": "icon/mine_sel.png",
+                "text": "我的"
+            }
+        ]
+    },
+    "subPackages": [
+        {
+            "root": "page/index/",
+            "pages": [
+                "pages/activityList/activityList",
+                "pages/activityDetail/activityDetail",
+                "pages/seckill/seckill",
+                "pages/seckillDetail/seckillDetail",
+                "pages/seckillDetail/orderConfirm/orderConfirm",
+                "pages/bargain/bargain",
+                "pages/bargainDetail_02/bargainDetail_02",
+                "pages/bargainDetail_02/orderConfirm/orderConfirm",
+                "pages/groupBuying/groupBuyingList",
+                "pages/groupBuying/groupBuyingDetail/groupBuyingDetail",
+                "pages/signIn/index",
+                "pages/address/newAddress/newAddress",
+                "pages/address/address",
+                "pages/comment/comment",
+                "pages/voucher/voucher",
+                "pages/advertise/advertise",
+                "pages/banner/banner",
+                "pages/groupBuying/orderConfirm/orderConfirm"
+            ]
+        },
+      {
+        "root": "page/forum/",
+        "pages": [
+          "pages/forumDetail/forumDetail",
+          "pages/forumRelease/index"
+        ]
+      },
+        {
+            "root": "page/mine/",
+            "pages": [
+                "pages/voucher/voucher",
+                "pages/myWallet/myWallet",
+                "pages/goShare/goShare",
+                "pages/myOrder/myOrder",
+                "pages/address/address",
+                "pages/address/newAddress/newAddress",
+                "pages/collect/collect",
+                "pages/modifyUserName/modifyUserName",
+                "pages/login/login",
+                "pages/myBargain/myBargain",
+                "pages/infoRegist/registMenu/registMenu",
+                "pages/bargainDetail_02/bargainDetail_02",
+                "pages/bargainDetail_02/orderConfirm/orderConfirm",
+                "pages/infoRegist/addGroup/addGroup",
+                "pages/infoRegist/cardSales/cardSales",
+                "pages/myActivityList/myActivityList",
+                "pages/myActivityDetail/myActivityDetail",
+                "pages/infoRegist/signBill/signBill",
+                "pages/comment/comment",
+                "pages/myOrder/orderDetail/orderDetail"
+            ]
+        }
+    ]
+}

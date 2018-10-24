@@ -1,0 +1,12 @@
+<view class='top'>
+  <view class='container'> 
+    <view>可提现金额(满4.8元提现)</view>
+    <view id='containertext'><text class='containertext'>￥</text>
+      <input bindinput='bindMoney' value='{{getMoney}}' ></input>
+    </view>
+  </view>
+  <navigator hover-class="navigator-hover">
+   <button open-type="share" class='goShare'>去分享</button>
+  </navigator>
+</view>
+<view class='getMobey' bindtap='withdrawMoney'>申请提现</view>

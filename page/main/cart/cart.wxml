@@ -1,0 +1,58 @@
+<!--pages/cart/cart.wxml-->
+<view class='container'>
+
+	<!-- 购物车有数据时显示 -->
+  <view wx:if="{{hasData}}" class='goods_have'>
+    
+    <block wx:for="{{lists}}"  wx:key="{{index}}">
+      <view class='goods_list'>
+      
+        <icon wx:if="{{item.selected}}"  type="success" size="16" color="#C4161E"
+				data-index="{{index}}" class='select' bindtap="selectList"></icon>
+        <icon wx:else type="circle" size="16"
+				data-index="{{index}}" class='select' bindtap="selectList"></icon>
+
+        <navigator url='#' class='good_pic' hover-class="none"><image src='{{item.imgs}}'></image></navigator>
+        <view class='good_det'>
+          <navigator url='#' class='good_name' hover-class="none">{{item.name}}</navigator>
+          <view class='good_spec'>
+            {{item.desc}}
+            <text>¥{{item.price}}</text>
+          </view>
+          <view class='good_option'>
+            <text class='minus' data-num="{{item.amount}}" catchtap='jian_fn' data-k='{{index}}'>-</text>
+            <text class='num'>{{item.amount}}</text>
+            <text class='add' data-num="{{item.amount}}" catchtap='jia_fn' data-k='{{index}}'>+</text>
+            <image src='/icon/del_cart.png' bindtap='deleteItem'></image>
+          </view>
+        </view>
+      </view>
+		</block>
+
+	  <view style='width:100%;height:84rpx;background:#fff;'></view>
+
+    <view class='settle'>
+
+      <block wx:if="{{selectAllStatus}}">
+        	<icon type="success" color="#C4161E" size="16" bindtap="selectAll"></icon>
+					<text class="sa">全选</text>
+      </block>
+      <block wx:else>
+        <icon type="circle" size="16" bindtap="selectAll"></icon>
+				<text class="sa">全选</text>
+      </block>
+
+      <view class='rt'>
+        <text>合计：<text class='red'>¥{{totalPrice}}</text></text>
+        <navigator url='#'>结算</navigator>
+      </view>
+
+    </view>
+  </view>
+
+<!-- 购物车没有数据 -->
+  <view wx:else class='goods_none'>购物车是空的~</view>
+
+	
+
+</view>

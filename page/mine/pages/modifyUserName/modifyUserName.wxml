@@ -1,0 +1,7 @@
+<view class="container">
+  <input placeholder='用户名' focus='true'  bindinput='watchUserName' value='{{name}}'></input>
+  <text>修改用户名</text>
+  <view class="line"></view>
+</view>
+
+<button class="save" bindtap="setName" hover-class='none'>保存</button>

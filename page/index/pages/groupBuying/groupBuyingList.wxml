@@ -1,0 +1,36 @@
+<view class="seckill_goods" wx:for="{{groupBuyingList}}" wx:key="{{index}}">
+      <view class="left_img">
+          <image src="{{item.icon}}" model='aspectFill' ></image>
+      </view>
+      <view class="right_info">
+          <view class="goods_title">{{item.title}}</view>
+
+          <view class="seckill_progress">
+            <view class="sp_full">
+              <view class="sp_current" style="width:{{item.currentCount/item.totalCount*320}}rpx;"></view>
+            </view>
+            <view class="seckill_percent">{{item.percent}}%</view>
+          </view>
+
+            <view class="population">
+              <image src="../../icons/group.png"></image>
+              <text class="p_tag"  >已团</text>
+              <text class="bought">{{item.buyNum}}</text>
+              <text class="total">/{{item.num}}</text>
+          </view>
+
+          <view class="goods_price">
+              <text class="cny">¥</text>
+              <text class="original_price">{{item.price}}</text>              
+              <text class="present_price">¥{{item.goodPrice}}</text>
+          </view>
+          
+            <view  wx:if="{{item.isHaveGood=='Y'}}">
+              <navigator url="groupBuyingDetail/groupBuyingDetail?id={{item.id}}" hover-class='none'>
+                <text class="buy_now"> 去团购 </text>
+               </navigator>
+            </view>
+            <view class="buy_now"  wx:else="{{item.isHaveGood=='N'}}">人数已满</view>
+
+      </view>
+</view>

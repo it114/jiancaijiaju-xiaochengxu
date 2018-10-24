@@ -1,0 +1,231 @@
+
+.envelopes_page{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* background: url('../../../images/bg_02.png'); */
+  z-index: 1;
+}
+.progress_view{
+  position: absolute;
+  top:30rpx;
+  background: #fff;
+}
+.red-packet{
+  width: 140rpx;
+  height: 160rpx;
+  z-index: 100;
+  transition-property:transform,top;
+  transform-origin:50% 50% 0;
+  -webkit-transition-property:transform,top;
+  -webkit-transform-origin:50% 50% 0;
+}
+.user_con{
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  position: relative;
+}
+.start_btn_bg{
+  width: 480rpx;
+  height: 90rpx;
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top:600rpx;
+}
+.activity_info{
+  width: 600rpx;
+  display: block;
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top:700rpx;
+}
+.info_title{
+  text-align: center;
+  font-size: 30rpx;
+  color: #fff;
+  margin: 0 auto;
+  display: block;
+}
+.info_content{
+  margin-top: 20rpx;
+  border:1rpx solid #bf7cbf;
+  border-radius:5rpx;
+  padding: 20rpx;
+  text-align: left; 
+}
+.info_content text{
+  display: block;
+  font-size: 28rpx;
+  color: #fff;
+  margin: 5rpx 0;
+}
+.start_btn{
+  color: #b904ff;
+  font-size: 40rpx;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0;
+  left: 0;
+  text-align: center;
+  line-height: 90rpx;
+}
+
+.dialog_box{
+  width:100%;
+  height:100%;
+  position: fixed;
+  top:0;
+  left:0;
+  /* background: rgba(0,0,0,0.50); */
+  z-index: 1;
+}
+.db_mask{
+	width:100%;
+  height:100%;
+  position: fixed;
+  top:0;
+  left:0;
+	background: rgba(0,0,0,0.50);
+  z-index: 2;	
+}
+.db_body{
+  width:73.3%;
+  height:360rpx;
+  background: #ffffff;
+  border-radius:4px;
+  padding:40rpx 24rpx;
+  box-sizing: border-box;
+  position:fixed;  
+  top:50%;
+  left:50%;  
+  transform:translateX(-50%) translateY(-50%);  
+  z-index: 3;
+}
+.input_phone,.input_vcode{
+  width:100%;
+  padding-left:104rpx;
+  box-sizing: border-box;
+  position: relative;
+}
+.input_vcode{
+  margin-top:24rpx;
+}
+.input_phone label,.input_vcode label{
+  font-size:14px;
+  color:#333333;
+  line-height:40rpx;
+  position:absolute;
+  left:0;
+  top:20rpx;
+}
+.input_phone input{
+  width:100%;
+  height:80rpx;
+  border:1px solid #DEDEDE;
+  border-radius:4px;
+  box-sizing: border-box;
+  font-size:14px;
+  color:#999999;
+  line-height:normal;
+  padding-left:24rpx;
+  padding-right:24rpx;
+}
+.input_vcode input{
+  width:238rpx;
+  height:80rpx;
+  border:1px solid #DEDEDE;
+  border-radius:4px;
+  box-sizing: border-box;
+  font-size:14px;
+  color:#999999;
+  line-height:normal;
+  padding-left:24rpx;
+  padding-right:24rpx;
+}
+.get_vcode{
+  width:140rpx;
+  height:56rpx;
+  background: #C4161E;
+  font-size:24rpx;
+  color:#FFFFFF;
+  text-align: center;
+  line-height:56rpx;
+  border-radius:4px;
+  position:absolute;
+  right:0;
+  top:16rpx;
+}
+.submit{
+  width:230rpx;
+  height:80rpx;
+  background: #C4161E;
+  font-size:32rpx;
+  color:#FFFFFF;
+  text-align: center;
+  line-height:80rpx;
+  margin:40rpx auto 0;
+}
+
+.text_info{
+    width:100%;
+    padding:30rpx;
+    font-size:28rpx;
+    line-height:20px;
+    box-sizing: border-box;
+}
+.img_list,.img_item,.img_item>image{
+    width:100%;
+}
+.prize-packet{
+  width: 440rpx;
+  height: 560rpx;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  top: 200rpx;
+  right:0;
+  z-index: 11;
+}
+.prizeMoney{
+  text-align: center;
+  color: #fff;
+  font-size: 40rpx;
+  position: absolute;
+  top:405rpx;
+  margin: auto;
+  left: 0;
+  right: 0;
+  z-index: 12;
+}
+.closepacket{
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 280rpx;
+
+}
+.share_btn{
+  width: 300rpx;
+  height: 200rpx;
+  position: absolute;
+  top: 300rpx;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: inherit;
+  border:none;
+  padding: 0;
+}
+button[plain]{ border:0 }

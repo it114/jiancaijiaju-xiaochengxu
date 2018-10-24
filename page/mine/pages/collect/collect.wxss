@@ -1,0 +1,87 @@
+view{
+    box-sizing: border-box;
+}
+.item-box{
+    width: 100%;
+    margin: 0 auto;
+    border-top:1px solid #f2f2f2;
+}
+.items{
+    width: 100%;
+}
+.item{
+    position: relative;
+    height: 180rpx;
+    margin-top:24rpx;
+    overflow: hidden;
+}
+.inner{
+    position: absolute;
+    top:0;
+}
+.inner.txt{
+    background-color: #fff;
+    width: 100%;
+    height:100%; 
+    z-index: 5;
+    padding-left:270rpx;
+    transition: left 0.2s ease-in-out;
+    overflow:hidden;
+}
+.inner.del{
+    background-color: #e64340;
+    width: 128rpx;
+    height:180rpx;
+    line-height:180rpx;
+    font-size:24rpx;
+    text-align: center;
+    z-index: 4;
+    right: 0;
+    color: #fff
+}
+.item-icon{
+    width: 220rpx;
+    height:220rpx;
+    border-radius:4px;
+    position:absolute;
+    left:30rpx;
+}
+.item_title{
+  height:80rpx;
+  font-size:28rpx;
+  color:#333333;
+  line-height:40rpx;
+  padding-right:30rpx;
+   overflow:hidden;  
+  text-overflow:ellipsis;
+  display:-webkit-box; 
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  box-sizing: border-box;
+}
+.item_price{
+  position:absolute;
+  top:130rpx;
+  color:#C4161E;
+}
+.cny_icon{
+  font-size:28rpx;
+}
+.price_info{
+  font-size:36rpx;
+}
+.notFound image{
+  display: block;
+  width: 187px;
+  height: 128px;
+  margin: 0 auto;
+  padding-top: 100px;
+}
+.notFound text{
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+}

@@ -1,0 +1,23 @@
+<view class='container'>
+  <!-- <input class='title' placeholder='请输入标题' bindinput='watchTitle'></input> -->
+  <view class='cnt-box'>
+    <textarea bindinput='watchInfo' placeholder='发表论坛内容…' maxlength='-1' show-confirm-bar='{{status}}' focus="true"></textarea>
+    <view class="weui-uploader__files" id="uploaderFiles" >
+      <block wx:for="{{files}}" wx:key="*this">
+        <view class="weui-uploader__file"  >
+          <image class='del_this' src='/icon/forum_false.png' id="{{item}}" bindtap='delthis'></image>
+          <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" id="{{item}}" bindtap="previewImage"/>
+        </view>
+      </block>
+    </view>
+
+    <view class=" addpic" >
+      <view class="" bindtap="chooseImage">
+        <image src='/icon/forum_camera.png'></image>
+        <view>上传照片</view>
+      </view>
+    </view>
+  </view>
+
+  <view class='send' bindtap='send'><view>发送</view></view>
+</view>

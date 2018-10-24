@@ -1,0 +1,57 @@
+<view class="container">
+  <scroll-view>
+  <view class="top_info">
+  
+   <swiper  class="swiper" autoplay="auto" interval="3500" duration="500" indicator-dots="true" indicator-color="#999999" indicator-active-color="#ffffff">
+    <swiper-item  wx:for="{{images}}" wx:key="{{item}}">
+      
+          <image src="{{item.url}}"  mode="aspectFill"/>
+      
+    </swiper-item>    
+</swiper>
+    <view class="info_detail">
+      <view class="left_title">{{title}}</view>
+      <view class="right_count">预约人数<text style="width:8rpx;  display:inline-block;"></text>{{num}}</view>
+    </view>
+    <view class="a_time">
+      <image src="../../icons/time.png"></image>
+      {{endDate}}
+    </view>
+    <view class="a_place">
+      <image src="../../icons/place.png"></image>
+      {{areaName}}{{addressInfo}}
+    </view>
+  </view>
+
+  <view class="activity_intro">
+      <view class="ai_tag">活动介绍</view>
+      <view class="text_info">{{info}}</view>
+       <view class="img_list" wx:for="{{images}}" wx:key="{{item}}">
+        <view class="img_item">
+            <image src="{{item.url}}" mode="aspectFill" ></image>
+        </view>
+    
+  </view>
+  </view>
+  <!-- <view class="btn">
+    <button class="btm_btn" bindtap='joinActivity'>我要参加</button>
+  </view> -->
+  </scroll-view>
+</view>
+
+<!-- 点击我要参加后的弹出框 -->
+  <!-- <view class="dialog_box" style="display:{{displayStatus}};">
+		<view class="db_mask" bindtap="hideDialog"></view>
+    <view class="db_body">
+      <view class="input_phone">
+        <label>手机号</label>
+        <input bindinput='watchPassPhone' placeholder='请输入手机号' name='username'></input>
+      </view>
+      <view class="input_vcode">
+        <label>验证码</label>      
+        <input bindinput='watchPassCode' placeholder='请输入验证码' name='psw'></input>
+        <view class='get_vcode' form-type='submit' bindtap="getCode">{{currentTime}}</view>
+      </view>
+      <button class="submit" bindtap="bangPhone">提交</button>
+    </view>
+  </view> -->

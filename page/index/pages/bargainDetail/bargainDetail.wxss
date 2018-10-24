@@ -1,0 +1,106 @@
+.container{
+  width:100%;
+}
+.bargain_detail{
+  width:92%;
+  height:360rpx;
+  margin:0 auto;
+  border:1px solid #DEDEDE;
+  border-radius:4px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.title{
+  width:100%;
+  height:88rpx;
+  font-size:28rpx;
+  color:#333333;
+  text-align: center;
+  line-height:88rpx;
+}
+.bargain_item{
+  width:100%;
+  height:270rpx;
+  background: #F6F6F6;
+  box-sizing:border-box;
+  position:relative;
+}
+.left_img{
+  width:236rpx;
+  height:230rpx;
+  border-radius:4px;
+  overflow: hidden;
+  position:absolute;
+  top:10px;
+  left:11px;
+}
+.left_img image{
+  width:100%;
+  height:100%;
+}
+.right_info{
+  width:100%;
+  padding-left:278rpx;
+  padding-top:20rpx;
+  padding-right:22rpx;
+  box-sizing: border-box;
+}
+.item_title{
+  height:80rpx;
+  font-size:28rpx;
+  color:#333333;
+  line-height:40rpx;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.bargain_info{
+  margin-top:96rpx;
+  position: relative;
+}
+.price_tag{
+  font-size:28rpx;
+  color:#C4161E;
+}
+.price{
+  font-size:40rpx;
+  color:#C4161E; 
+}
+.number{
+  line-height:40rpx;
+  font-size: 28rpx;
+  color: #999999;
+  position: absolute;
+  right:0;
+  bottom:0;
+}
+.bargainMsg{
+  width:100%;
+  text-align: center;
+  font-size:28rpx;
+  color:#333333;
+  line-height:20px;
+  margin-top:40rpx;
+}
+.share{
+  width:62.7%;
+  height:88rpx;
+  background: #C4161E;
+  text-align: center;
+  line-height:88rpx;
+  font-size:32rpx;
+  color:#ffffff;
+  margin:24rpx auto 0;
+  border-radius:4px;
+}
+.countDown{
+  width:100%;
+  text-align: center;
+  font-size:24rpx;
+  color:#333333;
+  line-height:17px;
+  margin-top:24rpx;
+}

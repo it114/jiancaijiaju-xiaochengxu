@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "商品评论",
+  "navigationBarTextStyle" : "black",
+  "onReachBottomDistance" : "50",
+  "enablePullDownRefresh":true
+}

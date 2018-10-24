@@ -1,0 +1,165 @@
+.container{
+  width: 100%;
+  box-sizing: border-box;
+}
+.line_10{
+  height: 10px;
+  width: 100%;
+  background-color: #f2f2f2;
+}
+.rule{
+  font-size: 12px;
+  color: #999999;
+  line-height: 17px;
+  padding: 0 30rpx;
+  padding-top: 40rpx;
+  padding-bottom: 20rpx;
+}
+.rule .title{
+  font-size: 14px;
+  color: #666666;
+  line-height: 20px;
+}
+.btn_box{
+  width: 100%;
+  height: 290rpx;
+  background-color: #C4161E;
+  position: relative;
+  overflow: hidden;
+}
+.circle_out{
+  width: 200rpx;
+  height: 200rpx;
+  background-color: rgba(250, 169, 173, 0.5);
+  position: absolute;
+  left: 50%;
+  bottom: 40rpx;
+  margin-left: -100rpx;
+  border-radius: 50%;
+}
+.circle_center{
+  width: 178rpx;
+  height: 178rpx;
+  background-color: #fff;
+  position: absolute;
+  left: 50%;
+  bottom: 11rpx;
+  margin-left: -89rpx;
+  border-radius: 50%;
+}
+.circle_in{
+  width: 156rpx;
+  height: 156rpx;
+  background-color: transparent;
+  border: 1px solid #C4161E;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  margin-left: -75.5rpx;
+  box-sizing: border-box;
+  bottom: 11.5rpx;
+  text-align: center;
+}
+.circle_in .sign{
+  border-bottom: 1px solid #F2F2F2;
+  font-size: 28rpx;
+  color: #C4161E;
+  letter-spacing: 0;
+  text-align: center;
+  width: 60px;
+  margin: auto;
+  margin-top: 12px;
+}
+.circle_in view{
+  font-size: 20rpx;
+  color: #C4161E;
+  letter-spacing: 0;
+  margin-top: 2px;
+}
+.lt{
+  width: 900rpx;
+  height: 520rpx;
+  border-radius: 80%;
+  opacity: 0.32;
+  background: #F96F76;
+  position: absolute;
+  left: -48%;
+  bottom: -320rpx;
+}
+.rt{
+  width: 1600rpx;
+  height: 1600rpx;
+  border-radius: 50%;
+  opacity: 0.32;
+  background: #F96F76;
+  position: absolute;
+  right: -94%;
+  bottom: -1480rpx;
+}
+
+.calendar{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+}
+.time{
+  padding-top: 57rpx;
+  padding-bottom: 30rpx;
+  display: flex;
+}
+.time view{
+  flex: 1;
+  font-size: 15px;
+  color: #6B7897;
+  letter-spacing: 0.59px;
+  line-height: 18px;
+  padding-left: 15px;
+}
+.time view text{
+  font-size: 38rpx;
+}
+.weekName{
+  width: 100%;
+  display: flex;
+  padding-bottom: 12rpx;
+}
+.weekName view{
+  flex: 1;
+  text-align: center;
+  color: rgba(52,72,94,0.54);
+  font-size:15px;
+  line-height: 19px;
+}
+.sunday,.saturday{
+  color: red;
+}
+.week{
+  width: 100%;
+}
+.week view{
+  width: 14.2%;
+  height: 68rpx;
+  line-height: 68rpx;
+  display: inline-block;
+  text-align: center;
+  font-size: 14.54px;
+}
+.week view text{
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  position: relative;
+}
+.week view view{
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  position: relative;
+}
+.week view view image{
+  width:32rpx;
+  height:32rpx;
+  position: absolute;
+  right: 12px;
+  bottom: 3px;
+}

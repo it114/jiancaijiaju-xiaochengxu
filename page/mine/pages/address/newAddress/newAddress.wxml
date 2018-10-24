@@ -1,0 +1,23 @@
+<view class="add_address">
+  <input placeholder='姓名' id="name" bindinput='watchUserName' value='{{name}}'></input>
+  <input placeholder='手机号'  id="phone" type='number' bindinput='watchUserPhone' value='{{phone}}'></input>
+  <!-- 地址选择器 -->
+  <view class="section" id="location">
+    <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+      <view class="picker">
+        {{region[0]}}{{region[1]}}{{region[2]}}
+      </view>
+    </picker>
+  </view>
+  <input placeholder='详细地址' bindinput='watchUserDetailAddress' value='{{info}}' id="detail_location"></input>  
+</view>
+
+<view class="set_default">
+  <!-- <label>
+    <radio value="" checked="" color="#C4161E" bindtap='bindtap1'/>
+    <text class="sda">设为默认地址</text>
+  </label> -->
+</view>
+
+<button class="save" bindtap="addAddress">保存</button>
+

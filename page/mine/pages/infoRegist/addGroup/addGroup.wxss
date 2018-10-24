@@ -1,0 +1,69 @@
+.container{
+	width:100%;
+	padding:50rpx 80rpx;
+	box-sizing: border-box;	
+}
+.title{
+	width:100%;
+	text-align:center;
+	overflow: hidden;
+	margin-bottom:30rpx;
+}
+.title .icon{
+	width:100rpx;
+	height:100rpx;
+	border-radius:100%;
+	overflow: hidden;
+	float:left;
+}
+.title .icon>image{
+	width:100%;
+	height:100%;
+}
+.title .tit{
+	line-height:100rpx;
+	float:left;
+	margin-left:60rpx;
+	font-size:60rpx;
+}
+.input{
+	width:100%;
+	height:88rpx;
+	line-height:88rpx;
+	border:1px solid #C4161E;
+	border-radius:4px;
+	margin-bottom:30rpx;
+	padding-left:20rpx;
+	box-sizing:border-box;
+	vertical-align: middle;
+}
+.input text{
+	color:#C4161E;
+	float:left;
+}
+.input input{
+	 height:100%; 
+	align-items: center;
+	padding-left:20rpx;
+	font-size:14px;
+	color:#999;
+}
+.not_necessary input{
+	padding-left:40rpx;
+}
+.submit{
+	background: #C4161E;
+	text-align: center;
+	line-height:88rpx;
+	color:#fff;
+}
+.select_date picker{
+	padding-left:20rpx;
+}
+.select_date picker view{
+	width:100%;
+	box-sizing: border-box;
+	font-size:14px;
+	color:#999;
+	margin-left:20rpx;
+}

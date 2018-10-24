@@ -1,0 +1,10 @@
+.text_info{
+    width:100%;
+    padding:30rpx;
+    font-size:28rpx;
+    line-height:20px;
+    box-sizing: border-box;
+}
+.img_list,.img_item,.img_item>image{
+    width:100%;
+}

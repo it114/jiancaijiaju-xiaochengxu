@@ -1,0 +1,93 @@
+<view wx:if="{{showModel}}" class="model">
+  <view class="modelTitle">
+    获取微信授权信息
+  </view>
+  <view class="modelBody">微信登录需要获取您的用户信息，请前往设置</view>
+  <view class="btns">
+    <button open-type="getUserInfo" class="agree" bindgetuserinfo="agreeGetUser" lang="zh_CN">去设置</button>
+  </view>
+</view>
+<view wx:if="{{showModel}}" class="mask"></view>
+<view class="bd_header">
+    <swiper  class="swiper" autoplay="auto" interval="3500" duration="500">
+        <swiper-item  >
+            <image src="{{results.image}}" style='{{results.style}}' model='aspectFill'/>
+        </swiper-item>    
+    </swiper>
+    <view class="count_down">
+        距离时间结束还有{{oDay}}天{{oHour}}时{{oMinutes}}分{{oSecond}}秒
+    </view>
+</view>
+<view class="item_info">
+    <view class="item_name">{{results.goodName}}</view>
+     <view class="item_name1">{{results.attrName}}</view>
+    <view class="item_price">
+        <view class="aim_price">
+            <text class="noamal">目标价：</text>
+            <text class="emfor">¥{{results.aimsPrice}}</text>
+        </view>
+        <view class="prime_price">
+            <text class="normal">原价：</text>
+            <text class="emfor">¥{{results.originalPrice}}</text>
+        </view>
+    </view>
+</view>
+<!-- <view class="about_number">
+    <view class="join_number">
+        <text class="normal">已有</text>
+        <text class="emfor">3</text>
+        <text class="normal">人参加</text>
+    </view>
+    <view class="stock_number">
+        <text class="normal">库存：</text>
+        <text class="emfor">200</text>
+    </view>
+</view> -->
+<view class="process">
+    <view class="p_title">
+        <text>砍价进度</text>
+    </view>
+    <view class="sp_full">
+        <view class="sp_current" wx:if="{{isNow}}" style="width:{{results.price + isNowPrice/(results.originalPrice-results.aimsPrice)*100}}%;"></view>
+        <view class="sp_current" wx:else style="width:{{results.price /(results.originalPrice-results.aimsPrice)*100}}%;"></view>
+    </view>
+    <view class="price_process">
+        <text>¥{{results.originalPrice}}</text>
+        <text>¥{{results.aimsPrice}}</text>
+    </view>
+</view>
+<view class="msg">
+    <text class="normal">已成功砍掉</text>
+    <text class="emfor">{{totalPrice}}</text>
+    <text class="normal">元，离目标还差</text>
+    <text class="emfor">{{bargainPrice_mine}}</text>
+    <text class="normal">元！</text>
+</view>
+<view class="operate" wx:if="{{uid}}">
+    <!-- <view class="ask_friends"><button open-type="share" class='ask_friends'>召唤朋友帮忙砍</button></view>
+    <view class="by_self" wx:if="{{isfriendBargain}}"> 已砍{{isBargainPrice}}元</view> -->
+    <view class="by_self" wx:if="{{isfriendBargain}}"> 已砍{{isBargainPrice}}元</view>
+    <view  wx:else class="by_self" bindtap="friendBargain">砍一刀</view>
+</view>
+<view class="operate" wx:else>
+    <view class="ask_friends"><button open-type="share" class='ask_friends'>召唤朋友帮忙砍</button></view>
+    <!-- <view class="by_self" wx:if="{{isfriendBargain}}"> 已砍{{isBargainPrice}}元</view> -->
+    <view  wx:if="{{!isfriendBargain}}" class="by_self" bindtap="friendBargain">自己砍</view>
+</view>
+<view style='margin-top:10px;margin-bottom:50px;'>
+    <view class='list' wx:for="{{results.clientBargainRecordList}}">
+      <image class='image' src='{{item.icon}}'></image>
+      <text class='name'>{{item.name}}</text>
+      <text class='price'>{{item.price}}元</text>
+    </view>
+    <view class='list' wx:if="{{isNow}}">
+      <image class='image' src='{{icon}}'></image>
+      <text class='name'>{{name}}</text>
+      <text class='price'>{{isNowPrice}}元</text>
+    </view>
+  </view>
+<view class="buy" wx:if="{{!uid}}" >
+  <text wx:if="{{results.status == 3}}">已购买</text>
+  <text wx:elif="{{results.status == 4}}" bindtap="bugGood">待支付</text>
+  <text wx:else bindtap="bugGood">去购买</text>
+</view>

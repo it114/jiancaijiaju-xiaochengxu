@@ -1,0 +1,52 @@
+<view class="container">
+		<view class="title">
+			<view class="icon"><image src="../../../icons/wechat.png"></image></view>
+			<view class="tit">售卡信息登记</view>
+		</view>
+
+		<view class="input">
+				<text>*</text>
+				<input bindinput='watchUserName' placeholder='客户姓名' value='{{name}}'></input>
+		</view>
+
+		<view class="input">
+				<text>*</text>
+				<input bindinput='watchAddress' placeholder='客户地址' value='{{address}}'></input>
+		</view>
+
+		<view class="input">
+				<text>*</text>
+				<input bindinput='watchPhone' placeholder='客户电话'  value='{{phone}}'></input>
+		</view>
+
+		<view class="input">
+				<text>*</text>
+				<input bindinput='watchBrand' placeholder='售卡品牌' value='{{brandsId}}'></input>
+		</view>
+
+		<view class="input">
+				<text>*</text>
+				<input bindinput='watchGuide' placeholder='售卡导购' value='{{shopping}}'></input>
+		</view>
+
+		<view class="input">
+				<text>*</text>
+				<input bindinput='watchCardNumber' placeholder='卡号'  value='{{cardNum}}'></input>
+		</view>
+		
+		<view class="input">
+				<text>*</text>
+				<input bindinput='watchProgress' placeholder='装修进度' value='{{schedule}}'></input>
+		</view>
+
+		<view class="input select_date">
+				<text>*</text>
+				<!-- <input placeholder='请选择日期' disabled='true'></input> -->
+				<picker mode="date" value="{{date}}" start="2000-01-01" end="2050-12-31" bindchange="bindDateChange">
+						<view class="picker">{{time}}</view>
+				</picker>
+
+		</view>
+
+		<view class="input submit" bindtap='submitInfo'>提交</view>
+</view>

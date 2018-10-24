@@ -1,0 +1,12 @@
+  <view class="address_info" wx:for="{{address_list}}" >
+      <view class="info_detail" id="{{item.id}}"  bindtap="chooseAddress">
+            <view class="name_phone">
+              <text class="rcv_name">{{item.name}}</text>
+              <text class="rcv_phone">{{item.phone}}</text>
+            </view>
+            <view class="rcv_info">{{item.areaName}}</view>
+      </view>
+      <view class="gray_div"></view>
+  </view>
+
+  <button class="new_addr" bindtap='toNewAddressPage'>新增地址</button>

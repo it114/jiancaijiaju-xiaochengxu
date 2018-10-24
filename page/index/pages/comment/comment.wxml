@@ -1,0 +1,21 @@
+<view class='container' wx:if="{{results[0].simpleUser.name}}">
+  <view class='userInfo' wx:for="{{results}}">
+   <view style='overflow:hidden;'>
+      <image class='userIcon' src='{{item.simpleUser.icon}}'></image>
+      <view class='name'>{{item.simpleUser.name}}</view>
+    </view>
+    <view class='words'>{{item.content}}</view>
+    <view style='overflow:hidden'>
+      <view wx:for="{{item.imgArr}}" wx:for-item="items" wx:key="items" class='every imgCon' style='width:{{items.width}};height:{{items.height}};overflow:hidden;'>
+        <!-- <view > -->
+            <image vx:if="{{items.url}}" src="{{items.url}}" style='{{items.style}}'></image>
+          <!-- </view> -->
+    </view>
+    </view>
+    <view class='time'>{{item.ctime}}</view>
+  </view>
+</view>
+<view wx:elif="{{isOk}}" class='notFound' style="width:{{winWidth}}px;height:{{winHeight-45}}px">
+  <image src="../../images/404person.png"></image>
+  <text>该商品暂无评论~</text>
+</view>

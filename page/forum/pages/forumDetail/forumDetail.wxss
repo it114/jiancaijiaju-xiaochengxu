@@ -1,0 +1,225 @@
+.line_10{
+  width: 100%;
+  height: 10px;
+  background-color: #f2f2f2;
+}
+.container{
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.content{
+  width: 100%; 
+  box-sizing: border-box;
+  padding:0 30rpx;
+  background-color: #fff;
+}
+.content .lt_headpic{
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  float: left;
+}
+.content .lt_headpic image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.content .rt_det{
+  margin-left: 92rpx;
+  margin-top: 40rpx;
+  margin-bottom: 14rpx;
+}
+.content .rt_det .user_name{
+  padding-top: 10px;
+  font-size: 14px;
+  color: #333333;
+  line-height: 20px;
+  position: relative;
+  margin-bottom: 6px;
+}
+.content .rt_det .user_name navigator{
+  display: inline;
+}
+
+.content .rt_det .text_cnt{
+
+}
+.content .rt_det .text_cnt view{
+  font-size: 12px;
+  color: #333333;
+  text-align: justify;
+  line-height: 17px;
+  word-break:break-all;
+}
+.content .rt_det .text_cnt image.one{
+  width: 100%;
+  height: 280rpx;
+  margin-top: 6px;
+  border-radius: 4px;
+}
+.content .rt_det .text_cnt image.two{
+  width: 50%;
+  height: 230rpx;
+  margin-top: 6px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.content .rt_det .text_cnt image.two:nth-of-type(1){
+  padding-right: 5px;
+}
+.content .rt_det .text_cnt image.two:nth-of-type(2){
+  padding-left: 5px;
+}
+.content .rt_det .text_cnt image.three{
+  width: 33.33%;
+  height: 186rpx;
+  margin-top: 6px;
+  border-radius: 4px;
+  box-sizing: border-box
+}
+.content .rt_det .text_cnt image.three:nth-of-type(3n+1){
+  padding-right: 6px;
+}
+.content .rt_det .text_cnt image.three:nth-of-type(3n+2){
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.content .rt_det .text_cnt image.three:nth-of-type(3n+3){
+  padding-left: 6px;
+}
+
+.option{
+  margin-top: 2px;
+  margin-bottom: 10px;
+  position: relative;
+}
+.option image{
+  width: 32rpx;
+  height: 32rpx;
+  vertical-align: middle;
+  margin-top: 0px;
+}
+.option text{
+  font-size: 12px;
+  color: #999999;
+  letter-spacing: 0;
+  line-height: 34rpx;
+  text-indent: 5px;
+  display: inline-block;
+}
+.option .time{
+  letter-spacing: 0;
+  position: absolute;
+  right:0;
+  bottom: 3px;
+}
+
+
+.comment{
+  box-sizing: border-box;
+  padding:0 30rpx;
+  background-color: #fff;
+  padding-top: 20px;
+  margin-bottom: 62px;
+  
+}
+.comment>text{
+  font-size: 14px;
+  color: #333333;
+  line-height: 20px;
+  font-family: PingFang-SC-Medium;
+}
+.comment_list{
+  margin-top: 24rpx;
+  border-bottom: 1px solid #f2f2f2;
+}
+.comment_list:nth-last-of-type(1){
+  border-bottom: 0;
+}
+.comment_list .lt_headpic{
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  float: left;
+}
+.comment_list .lt_headpic image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.comment .comment_list .rt_det{
+  margin-left: 92rpx;
+}
+.comment .comment_list .rt_det .user_name{
+  padding-top: 10px;
+  font-size: 14px;
+  color: #333333;
+  line-height: 20px;
+  position: relative;
+  margin-bottom: 6px;
+}
+.comment .comment_list .rt_det .user_name navigator{
+  display: inline;
+}
+.comment .comment_list .rt_det .user_name text{
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  color: #999999;
+  line-height: 19px;
+}
+.comment .comment_list .rt_det .text_cnt{
+  font-size: 12px;
+  color: #333333;
+  text-align: justify;
+  line-height: 17px;
+}
+.comment .comment_list .rt_det .text_cnt text{
+  color: #bfbfbf;
+}
+
+.reply{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 52px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20rpx 30rpx;
+  background: #FFFFFF;
+  border-top: 1px solid #D8D8D8;
+  overflow: hidden;
+  z-index: 99;
+}
+/* .hidden{display:none;} */
+.reply input{
+  float: left;
+  width: 79%;
+  height: 32px;
+  font-size: 12px;
+  color: #333;
+  border-bottom: 1px solid #dedede;
+  line-height: 17px;
+}
+.reply button{
+  float: right;
+  width: 19%;
+  border: none;
+  background: #C4161E;
+  border-radius: 4px;
+  color: #fff;
+  height: 32px;
+  line-height: 32px;
+  font-size: 14px;
+}
+
+
+
+
+.every{
+   border-radius:4px;
+  float: left;
+  margin-top:5px;
+}

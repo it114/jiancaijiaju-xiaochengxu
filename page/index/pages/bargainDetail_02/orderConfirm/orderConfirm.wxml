@@ -1,0 +1,63 @@
+<view class="rcv_info">
+  <navigator url="../../address/address" hover-class='none'>
+    <view class="info_top">
+        <text class="name">{{addressInfo.name}}</text>
+        <text class="phone">{{addressInfo.phone}}</text>
+    </view>
+    <image class="addr" src="../../../icons/location.png"></image>
+    <image class="arro" src="../../../icons/arrright.png"></image>
+      <view class="info_btm">
+          <text>{{addressInfo.areaName}}{{addressInfo.info}}</text>
+      </view>
+    </navigator>
+</view>
+<view class="item_detail">
+    <view class="left_thumb">
+        <image src="{{image}}" ></image>
+    </view>
+    <view class="right_info">
+        <view class="item_name">{{title}}</view>
+        <!-- <view class="item_spec">
+            {{valueName}}
+        </view> -->
+        <text class="item_price">¥{{price}}</text>
+        <!-- <text class="item_number">x{{num}}</text> -->
+    </view>
+</view>
+
+<!-- <view class="buy_count">
+    <view class="bc_left">购买数量</view>
+    <view class="bc_right">
+        <text id="minus" bindtap='jian_fn'>-</text>
+        <input id="input" value="{{num}}" type="number"></input>
+        <text id="add" bindtap='jia_fn'>+</text >
+    </view>
+</view> -->
+
+<!-- 优惠券 -->
+
+  <!-- <view class="coupon">
+      <text class="cp_left"></text>
+      <text class="cp_right"></text>
+
+  </view> -->
+
+<view class="blank_bg"></view>
+
+<view class="about_money">
+    <view class="item_count">
+        <text class="left_tag">商品金额</text>
+        <text class="right_ctn">¥{{totalPrice}}</text>
+    </view>
+    <view class="item_fee">
+        <text class="left_tag">运费</text>
+        <text class="right_ctn">¥0.00</text>
+    </view>
+</view>
+
+<view class="actual_pay">
+    <text class="ap_tag">实付金额：</text>
+    <text class="ap_num">¥{{payFee}}</text>
+</view>
+
+<view class="btm_settle" bindtap="payMoney">微信支付</view>

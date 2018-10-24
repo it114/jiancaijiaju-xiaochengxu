@@ -1,0 +1,61 @@
+<view class='container'>
+  <view class='btn_box' >
+    <view class='lt'></view>
+    <view class='rt'></view>
+
+    <view class='circle_out'>
+      <view class='circle_center'>
+        <view class='circle_in' wx:if="{{date!=calendarSignData[date]}}" bindtap="calendarSign">
+          <view class='sign'>未签到</view>
+          <view>连续签到领好礼</view>
+        </view>
+        <view class='circle_in' wx:else>
+          <view class='sign'>已签到</view>
+          <view>连续签到领好礼</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='calendar'>
+    <view class="time">
+      <view>
+        <text class="t_blue">{{year}}</text>年
+        <text class="t_blue">{{month}}</text>月
+      </view>
+    </view>
+    <view class="weekName">
+      <view class="sunday">日</view>
+      <view class="monday">一</view>
+      <view class="tuesday">二</view>
+      <view class="wednesday">三</view>
+      <view class="thursday">四</view>
+      <view class="friday">五</view>
+      <view class="saturday">六</view>
+      
+    </view>
+    <view class="week">
+
+      <!--填补空格-->
+      <view wx:for="{{nbsp}}" wx:key="item.id">\n</view>
+
+      <!--开心循环日期-->
+      <view wx:for="{{date-1}}"  wx:key="item.id" style='color:#bbb;'>
+        <view wx:if="{{item+1==calendarSignData[item+1]}}" >{{item+1}}<image src='/icon/calendar_q.png'></image></view>
+        <text wx:else="">{{item+1}}</text>
+      </view>
+      <view style="color: #7C86A2; background-color:#dfdfdf;border-radius:50%;">
+        <view wx:if="{{date==calendarSignData[date]}}" >{{date}}<image src='/icon/calendar_q.png'></image></view>
+        <text wx:else="">{{date}}</text>
+        
+      </view>
+      <!-- <image class='correct' src='../../../../images/correct.png'></image> -->
+      <view wx:for="{{monthDaySize-date}}" wx:key="item.id" style='color: #7C86A2;'>{{item+date+1}}</view>
+    </view>
+  </view>
+  <view class='line_10'></view>
+  <view class='rule'>
+    <view class='title'>签到规则</view>
+    <view>{{singeRule}}</view>
+  </view>
+</view>

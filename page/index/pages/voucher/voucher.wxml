@@ -1,0 +1,20 @@
+
+  <scroll-view scroll-y="true"  wx:if="{{list[0].id}}" class="" style="height:{{winHeight - 44}}px;" bindscrolltolower="handleLoadMore">
+    <view class='list_container'  wx:for="{{list}}" id="{{item.id}}" bindtap="chooseAddress">
+      <view class='list'>
+          <view id='circle_left'></view>
+          <text class='price'><text>￥</text>{{item.couponRule.offer}}</text>
+          <view class='middle'>
+            <view><view class='title'>满{{item.couponRule.full}}减{{item.couponRule.offer}}</view>{{item.startTime}}-{{item.endTime}}</view>
+          </view>
+          <text class='button'>立即使用</text>
+          <view id='circle_right'></view>
+      </view>
+    </view>
+    
+  </scroll-view> 
+  <view wx:else class='notFound' style="width:{{winWidth}}px;height:{{winHeight - 45}}px">
+      <image src="../../images/404person.png"></image>
+      <text>亲，优惠活动正在路上~</text>
+    </view> 
+ 

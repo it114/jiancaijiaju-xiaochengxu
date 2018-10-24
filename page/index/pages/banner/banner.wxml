@@ -1,0 +1,13 @@
+<view class="container">
+    <!-- <view class="text_info">
+        <text>{{text}}</text>
+    </view> -->
+    <view class="img_list">
+        <view class="img_item" wx:for="{{bannerlist}}">
+            <navigator url="{{item.businessUrl}}"  >
+                <image style="width:100%" src="{{item.imageUrl}}" bindtap="getnums" data-type="{{item.content}}"></image>
+            </navigator>
+
+        </view>
+    </view>
+</view>

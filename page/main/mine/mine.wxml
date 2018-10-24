@@ -1,0 +1,104 @@
+<view class='userInfo'>
+  <view class='userIcon'>
+    <image src="{{icon}}"></image>
+  </view>
+  <navigator url="../../mine/pages/modifyUserName/modifyUserName">
+      
+  </navigator>
+  <text class='userName'>{{name}}</text>
+  <text class='status' wx:if="{{phone}}">{{phone}}</text>
+  <text class='status' wx:else>未绑定手机号</text>
+</view>
+
+<view class='top' style='margin-top:126px;'>
+  <navigator url="../../mine/pages/myOrder/myOrder?tid=0">
+    <view class='myOrder'>我的订单
+      <image class='next' src="../../commonResource/images/next.png"></image>
+    </view>
+  </navigator>
+</view>
+<view class='container'>
+  <navigator url="../../mine/pages/myOrder/myOrder?tid=0" hover-class="navigator-hover">
+    <view class='list'>  
+      <image src="../../commonResource/images/all.png"></image>
+      <view>全部</view>
+    </view>
+  </navigator>
+	<navigator url="../../mine/pages/myOrder/myOrder?tid=1" hover-class="navigator-hover">
+		<view class='list list_02'>  
+			<image src="../../commonResource/images/readyMoney.png"></image>
+			<view>待付款</view>
+		</view>
+	</navigator>
+  <navigator url="../../mine/pages/myOrder/myOrder?tid=2" hover-class="navigator-hover">
+		<view class='list list_02'>  
+			<image src="../../commonResource/images/daifahuo.png"></image>
+			<view>待发货</view>
+		</view>
+	</navigator>
+	<navigator url="../../mine/pages/myOrder/myOrder?tid=3" hover-class="navigator-hover">
+		<view class='list list_03'>  
+			<image src="../../commonResource/images/readyGoods.png"></image>
+			<view>待收货</view>
+		</view>
+	</navigator>
+	<navigator url="../../mine/pages/myOrder/myOrder?tid=4" hover-class="navigator-hover"> 
+		<view class='list list_04'>  
+			<image src="../../commonResource/images/readyComment.png"></image>
+			<view>待评论</view>
+		</view>
+	</navigator>
+</view>
+
+<view class='line'></view>
+<view class='top'>
+  <navigator url="../../mine/pages/myWallet/myWallet" hover-class="navigator-hover">
+    <view class='myList'>
+      <image class='left_01' src='../../commonResource/images/money.png'></image>
+      <text>钱包</text>
+      <image class='next' src="../../commonResource/images/next.png"></image>
+    </view> 
+  </navigator>
+  <navigator url="../../mine/pages/voucher/voucher" hover-class="navigator-hover">
+    <view class='myList'>
+      <image class='left_02' src='../../commonResource/images/voucher.png'></image>
+      <text>优惠券</text>
+      <image class='next' src="../../commonResource/images/next.png"></image>
+    </view>
+  </navigator>
+  <navigator url="../../mine/pages/collect/collect" hover-class="navigator-hover">
+    <view class='myList'>
+      <image class='left_03' src='../../commonResource/images/collect.png'></image>
+      <text>我的收藏</text>
+      <image class='next' src="../../commonResource/images/next.png"></image>
+    </view>
+  </navigator>
+  <navigator url="../../mine/pages/myBargain/myBargain" hover-class="navigator-hover">
+    <view class='myList'>
+      <image class='left_04' src='../../commonResource/images/kanjia.png'></image>
+      <text>我的砍价</text>
+      <image class='next' src="../../commonResource/images/next.png"></image>
+    </view>
+  </navigator>
+  <navigator url="../../mine/pages/address/address?mine=mine" hover-class="navigator-hover">
+    <view class='myList'>
+      <image class='left_04' src='../../commonResource/images/address.png'></image>
+      <text>收货地址</text>
+      <image class='next' src="../../commonResource/images/next.png"></image>
+    </view>
+  </navigator>
+  <navigator url="../../mine/pages/myActivityList/myActivityList" hover-class="navigator-hover">
+    <view class='myList'>
+      <image class='left_05' src='../../commonResource/images/activity.png'></image>
+      <text>我的活动</text>
+      <image class='next' src="../../commonResource/images/next.png"></image>
+    </view>
+  </navigator>
+  <navigator url="../../mine/pages/infoRegist/registMenu/registMenu" wx:if="{{userType == 1}}" hover-class="navigator-hover">
+    <view class='myList'>
+      <image class='left_06' src='../../commonResource/images/mall.png'></image>
+      <text>商家入口</text>
+      <image class='next' src="../../commonResource/images/next.png"></image>
+    </view>
+  </navigator>
+</view>

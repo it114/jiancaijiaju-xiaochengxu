@@ -1,0 +1,59 @@
+.userInfo{
+  position: relative;
+  background: #fff;
+  padding: 30rpx;
+  padding-bottom: 20px;
+}
+.userInfo .userIcon{
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  float: left;
+}
+
+.userInfo .name{
+  float: left;
+  font-size: 14px;
+  color: #333;
+  line-height: 30px;
+  margin-left: 4px;
+}
+.userInfo .words{
+  font-size: 12px;
+  color: #333;
+  margin-top: 4px;
+}
+.userInfo .time{
+  position: absolute;
+  right: 30rpx;
+  bottom: 0;
+  font-size: 10px;
+  color: #999;
+}
+.notFound image{
+  display: block;
+  width: 187px;
+  height: 128px;
+  margin: 0 auto;
+  padding-top: 100px;
+}
+.notFound text{
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+}
+.imgCon{
+  margin-top: 10px;
+  overflow: hidden;
+  display: block;
+  border-radius: 5px;
+  float: left;
+  margin-left: 10px;
+}
+.imgCon image{
+  float: left;
+  display: block;
+}

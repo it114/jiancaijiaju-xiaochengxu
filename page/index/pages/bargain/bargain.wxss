@@ -1,0 +1,156 @@
+.swiper{
+  width:100%;
+  height:280rpx;
+  box-sizing: border-box;
+}
+.swiper swiper-item{
+  width:100%;
+  height:100%;
+}
+.swiper swiper-item navigator{
+  width:100%;
+  height:100%;
+}
+.swiper swiper-item navigator image{
+  width:100%;
+  height:100%;
+}
+.container{
+  width: 100%;
+  padding:0 30rpx;
+  height: 272rpx;
+  box-sizing: border-box;
+  position: relative;
+}
+.list{
+  width: 100%;
+  height: 272rpx;
+  position:relative;
+  margin-top: 24rpx;
+}
+.list .left{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 272rpx;
+  height: 272rpx;
+  border-radius: 4px;
+  overflow: hidden;
+  float: left;
+}
+.list .left image{
+  width:100%;
+  height:100%;
+}
+.list .right{
+  position: relativ;
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 292rpx;
+}
+.list .title{
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.list .attr{
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 20rpx;
+  color: #B1B1B1;
+}
+.list .notice{
+  color: #999;
+  font-size: 24rpx;
+  margin-top: 20rpx;
+}
+.list .bottom_right{
+  position: absolute;
+  right: 0;
+  bottom: 20rpx;
+  width: 168rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #fff;
+  background: #C4161E;
+  border-radius: 4px;
+}
+.list .bottom_left{
+  position: absolute;
+  left: 292rpx;
+  bottom: 40rpx;
+  color: #C4161E;
+  font-size: 32rpx;
+  line-height: 32rpx;
+}
+
+
+/* 自定义弹框 */  
+.model{  
+  background:#fff;  
+  position:fixed;  
+  top:30%;  
+  z-index:10000;  
+  width:86%;  
+  margin-left:7%;  
+  border-radius:5%;  
+}  
+.model .modelTitle{  
+  width:100%;  
+  height:90rpx;  
+  text-align:center;  
+  line-height:100rpx;  
+  border-bottom:1px solid #ECECED;  
+  color:#222;  
+  font-size:38rpx;  
+  font-family:“微软雅黑”;  
+}  
+.model .modelBody{  
+  color:#B1B1B1;  
+  width:91%;  
+  height:110rpx;  
+  padding:30rpx;  
+  font-size:35rpx;  
+  line-height:60rpx;  
+  padding-left:30rpx;  
+  padding-top:40rpx;  
+}  
+.model .btns{  
+  position:relative;  
+  overflow:hidden;  
+  border-top:1px solid #ECECED;  
+}  
+.model .btns button{  
+  width:100%;  
+  display:inline-block;  
+  padding:0rpx;  
+  background:#fff;  
+  /* opacity: 0; */  
+}  
+.model .btns button::after {  
+  border: none;  
+}  
+.model .btns .agree {  
+  color:#21B922;  
+}  
+.mask{  
+  width:100%;  
+  height:100%;  
+  background:rgba(0, 0, 0, .6);  
+  position:fixed;  
+  top:0;
+  z-index: 11;  
+  /* background: red; */
+}  

@@ -1,0 +1,24 @@
+<view class="container">
+		<view class="logo">
+				<image src="../../../icons/wechat.png"></image>
+		</view>
+
+		<navigator url="../cardSales/cardSales" hover-class="none">
+				<view class="btn card_sales">
+						<text>售卡信息登记</text>
+				</view>
+		</navigator>
+
+		<navigator url="../signBill/signBill" hover-class="none">
+				<view class="btn sign_bill">
+						<text>签单信息登记</text>
+				</view>
+		</navigator>
+	
+		<navigator url="../addGroup/addGroup" hover-class="none">
+				<view class="btn add_group">
+						<text>加群信息登记</text>
+				</view>
+		</navigator>
+
+</view>

@@ -1,0 +1,98 @@
+<view class="container">  
+  <!-- 头部大图 -->
+  <view class="top_bg">
+    <swiper class="swiper" autoplay="auto" interval="3500" duration="500" indicator-dots="true" indicator-color="#999999" indicator-active-color="#ffffff">
+      <swiper-item wx:for="{{results.icon}}" wx:key="{{index}}">
+        <image src="{{item}}" model="aspectFill"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- 商品标题、价格 -->
+  <view class="title_price">
+    <view class="title">{{results.title}}</view>
+    <view class="price">
+      <text class="cny">¥</text>
+      <text class="price_info">{{results.realPrice}}</text>
+    </view>
+    <view class="collect" bindtap="addCollect">
+      <view class="c_img"><image src="{{results.collect==true ? '../../icons/collect.png':  '../../icons/noCollect.png'}}"></image></view>
+      <view class="c_tag">收藏</view>
+    </view>
+  </view>
+  <!-- 规格参数 -->
+  <view class="spec">
+      <view class="s_title">规格</view>
+      <view class="spec_list">
+        <view class="sl_item" wx:for="{{results.clientAttrList}}" id="{{item.active}}" bindtap="chooseThis" data-vid="{{item.vid}}" data-gid="{{item.gid}}" data-aid="{{item.aid}}">{{item.valueName}}</view>
+      </view>
+  </view>
+  <!-- <view class="color">
+      <view class="c_title">颜色</view>
+      <view class="color_list">
+        <view class="cl_item" wx:for="{{colorList}}" id="{{item.selected}}">{{item.color}}</view>
+      </view>
+  </view> -->
+  <view class="count">
+      <view class="c_count">数量</view>
+      <view class="add_minus">
+          <text class="minus" bindtap="jian_fn">-</text>
+          <text class="input">{{num}}</text>
+          <!-- <input  readyOnly type="tel"></input> -->
+          <text class="add" bindtap="jia_fn">+</text>
+      </view> 
+  </view>
+  <!-- 商品评价 -->
+  <view class='comment'>
+    <text class='titles'>商品评价</text>
+    <navigator url="../comment/comment?gid={{results.id}}">
+      <view class='right'>查看全部<image class='next' src="../../icons/next.png"></image></view>
+    </navigator>
+  </view>
+  <view class='userInfo' wx:for="{{results.clientCommentList}}">
+    <view style='overflow:hidden;'>
+      <image src='{{item.simpleUser.icon}}'></image>
+      <view class='name'>{{item.simpleUser.name}}</view>
+    </view>
+    <view class='words'>{{item.content}}</view>
+    <view class='time'>{{item.ctime}}</view>
+  </view>
+  <!-- 商品详情 -->
+  <!-- 商品详情 -->
+  <view class="detail">
+      <view class="d_tag">商品详情</view>
+    
+      <view class="text_info">{{results.info}}</view>
+       <view class="img_list" wx:for="{{results.infoImage}}" wx:key="{{item}}">
+        <view class="img_item">
+            <image src="{{item.url}}"></image>
+        </view>
+      
+    </view>
+  </view>
+</view>
+<!-- 底部按钮 -->
+  <view class="btm_group">
+    <view class="group_inner">
+      <!-- 分享 -->
+      <!-- <view class="share">
+      <button open-type="share" class='ask_friends'>
+        <view class="share_icon"><image src="../../icons/share.png"></image></view>
+        <view class="tag">分享</view></button>
+     </view> 
+      <!-- 跳转购物车 -->
+      <!-- <view class="cart"> -->
+      <!-- <button open-type="" class='ask_friends'>
+        <view class="cart_icon"><image src="../../icons/cart.png"></image></view>
+        <view class="tag">购物车</view>
+        </button>
+      </view> -->
+      <!-- 加入购物车、立即购买 -->
+      <view class="right_btn">
+        <!-- <view class="add_cart">加入购物车</view> -->
+        
+         <view class="add_cart"><button open-type="share" class='ask_friends'>分享</button></view>
+        <view class="buy_now" wx:if="{{isNotBegin == 'true'}}" bindtap="bugGood">立即购买</view>
+        <view class="buy_now" wx:else>尚未开始</view>
+      </view>
+    </view> 
+  </view>

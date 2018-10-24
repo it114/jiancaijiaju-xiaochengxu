@@ -1,0 +1,36 @@
+<!-- 轮播图 -->
+    <swiper  class="swiper" autoplay="auto" style='height:{{imageHeight}}px' interval="3500" duration="500">
+        <swiper-item  wx:for="{{swiper}}" wx:key="{{index}}">
+            <navigator url="{{item.url}}">
+              <image  style='height:{{imageHeight}}px' src="{{item.img}}"/>
+            </navigator>
+        </swiper-item>    
+    </swiper>
+    <view class='container'>
+      <view class='list'>
+        <view class='left'>
+          <image src='../../images/sp01.png'></image>
+        </view>
+        <view class='right'>
+          <view class='title'>
+            撒大蘇打實打實撒撒旦撒旦撒的撒打算大撒大撒大撒的撒的撒大蘇打的撒的阿斯頓撒阿三打算
+          </view>
+          <view class='notice'>456人已0元拿</view>
+          <view class='bottom_left'>特惠价56</view>
+          <view class='bottom_right'>砍价5元得</view>
+        </view>
+      </view>
+      <view class='list'>
+        <view class='left'>
+          <image src='../../images/sp01.png'></image>
+        </view>
+        <view class='right'>
+          <view class='title'>
+            撒大蘇打實打實撒撒旦撒旦撒的撒打算大撒大撒大撒的撒的撒大蘇打的撒的阿斯頓撒阿三打算
+          </view>
+          <view class='notice'>456人已0元拿</view>
+          <view class='bottom_left'>特惠价56</view>
+          <view class='bottom_right'>砍价5元得</view>
+        </view>
+      </view>
+    </view>

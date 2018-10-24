@@ -1,0 +1,36 @@
+<view class="item-box">
+
+  <view class="items" wx:if="{{list[0].title}}">
+
+    <view wx:for="{{list}}"  wx:key="{{index}}"  class="item">
+
+<!-- <navigator url="../myActivityDetail/myActivityDetail?id={{item.id}}" hover-class="none"> -->
+      <view bindtouchstart="touchS" 
+            bindtouchmove="touchM" 
+            bindtouchend="touchE" 
+            data-index="{{index}}" 
+            style="{{item.txtStyle}}" 
+            class="inner txt">
+
+          <image class="item-icon" src="{{item.icon}}" model='aspectFill'></image>
+          
+          <text class="item_title">{{item.title}}</text>
+
+          <view class="item_price">
+              <text class="cny_icon">¥</text>
+              <text class="price_info">{{item.goodPrice}}</text>
+          </view>
+      </view>
+
+      <view data-index="{{index}}" data-id="{{item.id}}"  bindtap = "delItem" class="inner del">取消收藏</view>
+
+    </view>
+
+  </view>
+  <view wx:else class='notFound' style="width:{{winWidth}}px;height:{{winHeight - 45}}px">
+    <image src="../../images/404person.png"></image>
+    <text>亲,你还没有收藏额~</text>
+  </view>
+
+</view>
+

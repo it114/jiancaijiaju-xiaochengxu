@@ -1,0 +1,36 @@
+<view class="container" wx:if="{{myBargain}}">
+  <view class="bargain_record" wx:for="{{myBargain}}">
+  <navigator url="../bargainDetail_02/bargainDetail_02?bid={{item.id}}"  hover-class="none">
+    <view class="br_img">
+      <image src="{{item.image}}" style='{{item.style}}' model="aspectFill"></image>
+      <!-- <view class="fail_modal" wx:if="{{item.success == ''}}">
+          砍价失败
+      </view> -->
+    </view>
+    <view class="br_right">
+      <view class="br_title">{{item.goodName}}</view>
+        <view class='br_attr'>
+          {{item.attrName}}
+        </view>
+      <view class="br_result">
+          <text class="br_tag">已砍</text>
+          <text class="br_price">{{item.price}}</text>
+          <text class="br_tag">元</text>
+      </view>
+      <!-- <view class="br_result" wx:else>
+          <text class="br_fail">砍价失败</text>
+      </view> -->
+  
+
+      <view class="br_result" wx:if="{{item.status  == '1'}}" class="buy_now">直接购买</view>
+      <view class="br_result" wx:elif="{{item.status  == '2'}}" class="buy_now">砍价失败</view>
+      <view class="br_result" wx:elif="{{item.status  == '3'}}" class="buy_now">已购买</view>
+       <view class="br_result" wx:elif="{{item.status  == '4'}}" class="buy_now">待支付</view>
+    </view>
+    </navigator>
+  </view>
+</view>
+<view wx:else class='notFound' style="width:{{winWidth}}px;height:{{winHeight - 45}}px">
+  <image src="../../images/404person.png"></image>
+  <text>亲,你还没有发起砍价额~</text>
+</view>

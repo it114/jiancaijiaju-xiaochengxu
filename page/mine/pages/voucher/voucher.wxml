@@ -1,0 +1,90 @@
+<view id='top'>
+  <view class='item' bindtap="swichNav">
+    <view  class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0">未使用</view>
+  </view>
+  <view  class='item' bindtap="swichNav">
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1">已使用</view>
+  </view>
+  <view  class='item' bindtap="swichNav">
+    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2">已过期</view>
+  </view>
+</view>
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 44}}px;margin-top:44px;"  bindchange="bindChange">
+  <swiper-item>
+    <scroll-view scroll-y="true" class="" style="height:{{winHeight - 44}}px;" bindscrolltolower="handleLoadMore">
+      <view class='item-coupon-content' wx:for="{{list}}" bindtap="showtip">
+          <image class="item-coupon-bg" src="../../icons/bg-large.png">
+          <view class="item-info">
+              <image class="item-coupon-img" src="{{item.icon}}"></image>
+              <view style="margin-left:20rpx;">
+                <text class="item-coupon-title">{{item.title}}</text>
+                <text class="item-coupon-time">有效期{{item.day}}天</text>
+              </view>
+              <view style="text-align:center;margin-left:5rpx;width:240rpx;">
+                <text class="coupon-money">¥<text class="money-num">{{item.offer}}</text></text>
+                <text class="item-coupon-time" style="margin:0 auto;">满{{item.full}}可用</text>
+              </view>
+              <view class="toUse">
+                <text>去</text>
+                <text>使</text>
+                <text>用</text>
+              </view>
+          </view>
+          </image>
+      </view>
+      </scroll-view>  
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y="true" class="" style="height:{{winHeight - 44}}px;" bindscrolltolower="handleLoadMore">
+      <view class='item-coupon-content' wx:for="{{list_used}}" bindtap="showtip">
+
+          <image class="item-coupon-bg" src="../../icons/bg-large.png">
+          <view class="item-info">
+          <image class="item-coupon-img" src="{{item.icon}}"></image>
+          <view style="margin-left:20rpx;">
+            <text class="item-coupon-title">{{item.title}}</text>
+            <text class="item-coupon-time">有效期{{item.day}}天</text>
+          </view>
+          <view style="text-align:center;margin-left:5rpx;width:240rpx;">
+            <text class="coupon-money">¥<text class="money-num">{{item.offer}}</text></text>
+            <text class="item-coupon-time" style="margin:0 auto;">满{{item.full}}可用</text>
+          </view>
+          <view class="toUse">
+            <text>去</text>
+            <text>使</text>
+            <text>用</text>
+          </view>
+          </view>
+        </image>
+        </view>
+      </scroll-view>  
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y="true" class="" style="height:{{winHeight - 44}}px;" bindscrolltolower="handleLoadMore">
+      <view class='item-coupon-content' wx:for="{{list_timed}}" bindtap="showtip">
+          <image class="item-coupon-bg" src="../../icons/bg-large.png">
+          <view class="item-info">
+          <image class="item-coupon-img" src="{{item.icon}}"></image>
+          <view style="margin-left:20rpx;">
+            <text class="item-coupon-title">{{item.title}}</text>
+            <text class="item-coupon-time">有效期{{item.day}}天</text>
+          </view>
+          <view style="text-align:center;margin-left:5rpx;width:240rpx;">
+            <text class="coupon-money">¥<text class="money-num">{{item.offer}}</text></text>
+            <text class="item-coupon-time" style="margin:0 auto;">满{{item.full}}可用</text>
+          </view>
+          <view class="toUse">
+            <text>去</text>
+            <text>使</text>
+            <text>用</text>
+          </view>
+          </view>
+        </image>
+      </view>
+      </scroll-view>  
+  </swiper-item>
+</swiper>
+<view id='loadMoreDiv' wx:if="{{showLoading}}">
+  <image id='loadMoreDivimage' src = "../../icon/loading_more.gif"></image>
+  <text>全力加载中...</text>
+</view>

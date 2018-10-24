@@ -1,0 +1,122 @@
+<view wx:if="{{showModel}}" class="model">
+  <view class="modelTitle">
+    获取微信授权信息
+  </view>
+  <view class="modelBody">微信登录需要获取您的用户信息，请前往设置</view>
+  <view class="btns">
+    <button open-type="getUserInfo" class="agree" bindgetuserinfo="agreeGetUser" lang="zh_CN">去设置</button>
+  </view>
+</view>
+
+<!-- 引导用户转发 -->
+<view wx:if="{{showMask}}" class="mask">
+  <image class="notice" src="./pages/image/notice.png"> </image>
+  <image class="know" bindtap="closeMask" src="./pages/image/know.png"> </image>
+</view>
+<!-- 显示优惠卷 -->
+<view wx:if="{{showCoupon}}" class="mask viewCoupon">
+  <image class="couponbg" src="./pages/image/couponbg.png">
+  <image class="couponbt" bindtap="receiveCoupon" src="./pages/image/couponbt.png"> </image>
+  <view class="coupon_box">
+   <view class="item-coupon-content" wx:for="{{coupons}}">
+    <image class="item-coupon-img" src="{{item.icon}}"></image>
+    <view style="margin-left:10rpx;">
+     <text class="item-coupon-title">{{item.title}}</text>
+     <text class="item-coupon-time">有效期{{item.day}}天</text>
+    </view>
+    <view style="text-align:center;margin-left:5rpx;">
+     <text class="coupon-money">¥<text class="money-num">{{item.offer}}</text></text>
+     <text class="item-coupon-time" style="margin:0 auto;">满{{item.full}}可用</text>
+    </view>
+   </view>
+   
+  </view>
+   </image>
+  
+</view>
+<view class="container">
+    <!-- 轮播图 -->
+    <swiper  class="swiper" autoplay="auto" interval="3500" duration="500" indicator-dots="true" indicator-color="#999999" indicator-active-color="#ffffff">
+        <swiper-item  wx:for="{{swiper}}" wx:key="{{index}}">
+            <navigator url="../../index/pages/banner/banner?banId={{item.id}}" >
+              <image src="{{item.image}}" model="aspectFill"/>
+            </navigator>
+        </swiper-item>    
+    </swiper>
+    <!-- 四个菜单按钮 -->
+    <view class="tab_menu">
+        <view class="menu_item" >
+          <navigator url="../../index/pages/seckill/seckill" hover-class="none">
+           <view class="out_bg menu_01"> 
+                 <image src="../../commonResource/icons/tab_01.png" bindtap="getnums" data-type="秒杀"></image> 
+            </view> 
+            <text>限时秒杀</text> 
+          </navigator>
+        </view> 
+        <view class="menu_item">
+          <navigator url="../../index/pages/activityList/activityList" hover-class="none">
+            <view class="out_bg menu_02">
+              <image src="../../commonResource/icons/tab_02.png"  data-type="预约"></image>
+            </view>
+            <text>预约活动</text>    
+          </navigator>
+                     
+        </view>
+        <view class="menu_item">
+          <navigator url="../../index/pages/bargain/bargain" hover-class="none">        
+            <view class="out_bg menu_03">
+                <image src="../../commonResource/icons/tab_03.png"  data-type="砍价"></image>
+            </view>
+            <text>砍价</text>
+          </navigator>
+        </view>
+        <view class="menu_item">
+          <navigator url='/page/index/pages/signIn/index' hover-class='none'>
+            <view class="out_bg menu_04">
+                <image src="../../commonResource/icons/tab_04.png"></image>
+            </view>
+            <text>签到</text>            
+          </navigator>
+        </view>        
+    </view>
+    <!-- 其它 -->
+    <view class="activity">
+        <view class="a_left" id="a_left">t
+					<!-- <navigator url="../../index/pages/seckill/seckill"> -->
+          <navigator url="../../index/pages/activityList/activityList">
+             <image src="../../commonResource/images/a_left.png"></image>
+             <!-- <image src="../../commonResource/images/a_right.png"></image>  -->
+					</navigator>
+        </view>
+        <view class="a_right" id="a_right">
+            <navigator url="../../index/pages/groupBuying/groupBuyingList">
+                <image src="../../commonResource/images/a_right.png"></image> 
+            </navigator>
+        </view>
+    </view>
+    <navigator  url="../../index/pages/advertise/advertise">
+      <view class="btm">
+          <image src="../../commonResource/images/000.png"></image>
+      </view>
+    </navigator>
+    <view class="container_activity">
+    <view class="activity_list" wx:for="{{activityList}}" wx:key="{{index}}">
+    <navigator url="../../index/pages/activityDetail/activityDetail?id={{item.id}}" hover-class="none">
+      <view class="left_img" style='width:{{item.width}};height:{{item.height}};overflow:hidden;'>
+        <image src="{{item.icon}}" model="aspectFill"></image>
+      </view>
+      <view class="right_info">
+        <view class="title">{{item.title}}</view>
+        <view class="time">
+            <image src="../../../icon/time.png"></image>
+            {{item.startDate}}－{{item.endDate}}
+        </view>
+        <view class="place">
+            <image src="../../../icon/place.png"></image>
+            {{item.areaName}}{{item.addressInfo}}
+        </view>
+      </view>
+      </navigator>
+    </view>
+  </view>
+</view>

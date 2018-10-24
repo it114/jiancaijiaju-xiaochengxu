@@ -1,0 +1,153 @@
+/* pages/mine/mine.wxss */
+.userInfo{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 126px;
+  background: #C4161E;
+}
+.userIcon{
+  width: 69px;
+  height: 69px;
+  overflow: hidden;
+  border-radius: 100%;
+  margin: 0 auto;
+}
+.userIcon image{
+  width: 100%;
+  height: 100%;
+}
+.userName{
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  margin-top:3px;
+}
+.status{
+  display: block;
+  background: #E0424A;
+  border-radius: 100px;
+  margin: 0 auto;
+  width: 108px;
+  height: 22px;
+  line-height: 22px;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+   margin-top: 3px; 
+}
+
+.edit{
+  position: absolute;
+  left: 50%;
+  top: 35px;
+  margin-left: 55px;
+  width: 13px;
+  height: 13px;
+}
+.top{
+  width: 100%;
+  padding-left: 15px;
+  box-sizing: border-box;
+}
+.myOrder{
+  width: 100%;
+  height:44px;
+  line-height: 44px;
+  font-size:14px;
+  color:#333;
+  float: right;
+  border-bottom: 1px solid #f2f2f2;
+}
+.next{
+  width: 7px;
+  height: 12px;
+  float: right;
+  margin-top: 16px;
+  margin-right: 15px;
+}
+.list{
+  width: 20%;
+  text-align: center;
+  float: left;
+  font-size: 12px;
+  color: #333;
+}
+.list view{
+  margin-top: 6px;
+}
+.list image{
+  width: 24px;
+  height: 24px;
+}
+.list_02 image{
+  width: 23px;
+  height: 21px;
+}
+.list_03 image{
+  width: 24px;
+  height: 20px;
+}
+.list_04 image{
+  width: 22px;
+  height: 20px;
+}
+.container{
+  padding: 12px 0;
+  width: 92%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.line{
+  width: 100%;
+  height: 10px;
+  background: #F2F2F2;
+}
+.myList{
+  width: 100%;
+  height: 48px;
+  line-height: 48px;
+  font-size:14px;
+  color:#333;
+  float: right;
+  border-bottom: 1px solid #f2f2f2;
+}
+.left_01{
+  width: 22px;
+  height: 22px;
+  vertical-align: -5px;
+}
+.left_02{
+  width: 24px;
+  height: 18px;
+  vertical-align: -3px;
+}
+.left_03{
+  width: 24px;
+  height: 24px;
+  vertical-align: -5px;
+}
+.left_04{
+  width: 19px;
+  height: 24px;
+  vertical-align: -7px;
+}
+.left_05{
+  width: 20px;
+  height: 24px;
+  vertical-align: -5px;
+}
+.left_06{
+  width: 22px;
+  height: 22px;
+   vertical-align: -5px; 
+}
+.myList text{
+  margin-left: 10px;
+}
+.myList .next{
+ margin-top: 24px;
+}

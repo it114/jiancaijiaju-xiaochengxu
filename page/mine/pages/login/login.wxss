@@ -1,0 +1,121 @@
+.welcome{
+  font-size:32rpx;
+  color:#333333;
+  line-height:22px;
+  padding-left:30rpx;
+  box-sizing: border-box;
+}
+.app_name{
+  font-family: PingFang-SC-Bold;
+  font-size: 48rpx;
+  color: #333333;
+  line-height:33px;
+  padding-left:30rpx;
+  margin-top:24rpx;
+  box-sizing: border-box; 
+}
+.input_phone{
+  margin-top:58rpx;
+}
+.input_phone,.input_password{
+  width:100%;
+  height:96rpx;
+  line-height:96rpx;
+  padding-left:102rpx;
+  padding-right:30rpx;
+  box-sizing: border-box;
+  position:relative;
+}
+.input_phone input,.input_password input{
+  width:444rpx;  
+  font-size:28rpx;
+  color:#999999;
+  position:absolute;
+  bottom:18rpx;
+}
+.input_phone image,.input_password image{
+  width:48rpx;
+  height:48rpx;
+  position:absolute;
+  left:30rpx;
+  bottom:28rpx;
+}
+.getVcode{
+  width:140rpx;
+  height:56rpx;
+  background:#C4161E;
+  text-align: center;
+  line-height:56rpx;
+  color:#fff;
+  font-size:24rpx;
+  border-radius:4px;
+  position: absolute;
+  right:40rpx;
+  bottom:18rpx;
+}
+.agreement label radio{
+  zoom:0.6;
+  vertical-align: middle;
+  margin-top:-3px;
+}
+.line{
+  width:100%;
+  height:100%;
+  border-bottom:1px solid #f2f2f2;
+}
+.agreement{
+  width:100%;
+  padding-left:102rpx;
+  box-sizing: border-box;
+}
+.agreement label{
+   font-size:24rpx;
+   color:#333333;
+   line-height:34rpx;
+   margin-top:20rpx;
+}
+.login_btn{
+  width:84%;
+  height:88rpx;
+  background: #C4161E;
+  color:#fff;
+  font-size:32rpx;
+  line-height:88rpx;
+  margin:40rpx auto 0;
+}
+.btm_login{
+  width:100%;
+  height:136rpx;
+  text-align: center;
+  margin-top:172rpx;
+  padding-left:30rpx;
+  padding-right:30rpx;
+  box-sizing: border-box;
+  position: relative;
+  z-index:1;
+}
+.login_line{
+  width:100%;
+  height:100%;
+  border-top:1px solid #DEDEDE;  
+}
+.other_met{
+  width:184rpx;
+  font-size:24rpx;
+  color:#666666;
+  position:absolute;
+  top:-6px;
+  left:50%;
+  margin-left:-92rpx;
+  text-align: center;
+  background: #fff;
+  z-index:2;
+}
+.wechat_icon{
+  width:80rpx;
+  height:80rpx;
+  position: absolute;
+  bottom:0;
+  left:50%;
+  margin-left:-40rpx;
+}
