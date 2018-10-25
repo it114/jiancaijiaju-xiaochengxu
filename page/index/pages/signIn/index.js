@@ -45,15 +45,10 @@ Page({
   onLoad: function () {
     var that = this;
     var mydate = new Date();
-    // console.log(mydate)
     var year = mydate.getFullYear();
-    // console.log("year：" + year)
     var month = mydate.getMonth()+1;
-    // console.log("month：" + month)
     date = mydate.getDate();
-    // console.log("date：" + date)
     var day = mydate.getDay();
-    // console.log("day：" + day)
 
     var nbsp = 8 - ((date - day) % 7);
     var monthDaySize;
@@ -83,13 +78,9 @@ Page({
           method: 'GET',
           success: function (res) {
             for(var i = 0;i < res.data.data.length;i++){
-              console.log(res.data.data[i])
               var this_date = res.data.data[i].day.toString().slice(6,8);
-              console.log(this_date)
               calendarSignData[this_date] = this_date;
             }
-            console.log(that.data.calendarSignData)
-            console.log(calendarSignData);
             that.setData({
               year: year,
               month: month,

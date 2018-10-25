@@ -40,16 +40,17 @@ Page({
           token: res.data.data.token
         })
         wx.request({
-          url: config.getCouponUrl,
-          data: {token: res.data.data.token,status:0},
-          method: 'POST',
+          url: config.getCouponUrl+'?token=' + encodeURIComponent(that.data.token),
+          data: {status: 0},
+          method: 'post',
+
           success: function (res) {
             // for (var i = 0; i < res.data.data.length; i++) {
             //   res.data.data[i].startTime = util_js.formatTimeToDay(res.data.data[i].startTime)
             //   res.data.data[i].endTime = util_js.formatTimeToDay(res.data.data[i].endTime)
             // }
             that.setData({
-             list : res.data
+             list : res.data.data
             })
           }
         })
@@ -93,31 +94,31 @@ Page({
     } else {
       if (e.target.dataset.current == 1) {
         wx.request({
-          url: config.getCouponUrl,
-          // data: { token: that.data.token, status: 1},
-          method: 'GET',
+          url: config.getCouponUrl+'?token=' + encodeURIComponent(that.data.token),
+          data: {status: 1},
+          method: 'post',
           success: function (res) {
             // for (var i = 0; i < res.data.data.length; i++) {
             //   res.data.data[i].startTime = util_js.formatTimeToDay(res.data.data[i].startTime)
             //   res.data.data[i].endTime = util_js.formatTimeToDay(res.data.data[i].endTime)
             // }
             that.setData({
-              list_used: res.data
+              list_used: res.data.data
             })
           }
         })
       } else if (e.target.dataset.current == 2) {
         wx.request({
-          url: config.getCouponUrl,
-          // data: { token: that.data.token, status: 2 },
-          method: 'GET',
+          url: config.getCouponUrl+'?token=' + encodeURIComponent(that.data.token),
+          data: { status: 2 },
+          method: 'post',
           success: function (res) {
             // for (var i = 0; i < res.data.data.length; i++) {
             //   res.data.data[i].startTime = util_js.formatTimeToDay(res.data.data[i].startTime)
             //   res.data.data[i].endTime = util_js.formatTimeToDay(res.data.data[i].endTime)
             // }
             that.setData({
-              list_timed: res.data
+              list_timed: res.data.data
             })
           }
         })

@@ -1,7 +1,6 @@
 
 <view class="activity_page">
     <image class="envelopes_page" src="../../../images/bg_02.png" wx:if="{{envelopesshow}}">
-
           <!-- <progress class="progress_view" percent="20" show-info /> -->
         <view wx:for="{{packetList}}" wx:for-index="index" wx:for-item="items" data-index="{{index}}" data-money="{{index}}" bindtap="clickpacket">
            <image class="red-packet"  src="{{index==isSelect?items.clicksrc:items.src}}" style="position:fixed;top:{{items.top}}px;transform:rotate({{items.angle}}deg); left:{{items.left}}px;-webkit-transition:{{items.speed}}ms linear 0ms;transition:{{items.speed}}ms linear 0ms"></image>
@@ -14,7 +13,6 @@
            <button open-type="share" plain="true" lang="zh_CN" class="share_btn"></button>
            </image>  
            <text class="prizeMoney" wx:if="{{shareview}}">{{prizeMoney}}元</text>
-
            <image class="closepacket" bindtap="closepacket" src="../../../images/close.png" wx:if="{{shareview}}"></image>              
         </view>
     </image>
@@ -31,13 +29,11 @@
          <text>1、红包金额0.66---100元随机领取；</text>
          <text>2、用户需成功注册方可领取，红包金额达到限额即可提现</text>
          <text>3、点击右上角分享给好友并注册，好友继续分享可再得奖</text>
-          <text>4、手机号码仅作为红包提现时核对的凭证，请您放心</text>
+         <text>4、手机号码仅作为红包提现时核对的凭证，请您放心</text>
          </view>   
         </view>
        </image>
     </view>
-
-
 <view class="dialog_box" style="display:{{displayStatus}};">
 		<view class="db_mask" bindtap="hideDialog"></view>
     <view class="db_body">

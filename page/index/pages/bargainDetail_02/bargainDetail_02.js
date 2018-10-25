@@ -93,10 +93,11 @@ Page({
     wx.getStorage({
       key: "userInfo",
       success: function (res) {
+        console.log(res);
         that.setData({
           token: res.data.data.token,
           userId: res.data.data.id,
-          rootUid: res.data.rootUid,
+          rootUid: res.data.data.rootUid,
           icon:res.data.data.icon,
           name: res.data.data.name
         })
@@ -111,7 +112,6 @@ Page({
           data: data_ajax,
           method: 'GET',
           success: function (res) {
-            console.log(res)
             res.data.data.image = res.data.data.image.split(",")[0];
             var imgArr = [];
             var obj = util_js.getImgByThisSize(res.data.data.image, that.data.winWidth, 200);
@@ -232,7 +232,7 @@ Page({
                               that.setData({
                                 token: res.data.data.token,
                                 userId: res.data.data.id,
-                                rootUid: res.data.rootUid,
+                                rootUid: res.data.data.rootUid,
                               })
                               var data_ajax = { token: res.data.data.token, bid: options.bid, friendUid: res.data.data.id };
                               if (friendUid) {

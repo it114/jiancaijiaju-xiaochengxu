@@ -35,18 +35,6 @@ Page({
         });
       }
     });
-    wx.getStorage({
-      key: "userInfo",
-      success: function (res) {
-        that.setData({
-          uid: res.data.data.id,
-          token: res.data.data.token,
-          icon: res.data.data.icon,
-          name: res.data.data.name,
-          phone: res.data.data.phone
-        })
-      }
-    })
   },
   handleLoadMore: function () {
     console.log(this.data.hasNext)
@@ -118,12 +106,6 @@ Page({
       }
     });
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
 
   /**
    * 生命周期函数--监听页面显示
@@ -132,23 +114,25 @@ Page({
     var data = {};
     var that = this;
     if(!that.data.uid){
-      return;
-    }
-    wx.getStorage({
-      key: "userInfo",
-      success: function (res) {
+      wx.getStorage({
+        key: "userInfo",
+        success: function (res) {
         data = { token: res.data.data.token };
-        that.setData({
-          userId: res.data.data.id,
-        })
 
         if (res.data.data.rootUid) {
           that.setData({
             rootUid: res.data.data.rootUid,
           });
-        }
-
-
+        };
+        that.setData({
+            uid: res.data.data.id,
+            userId: res.data.data.id,
+            token: res.data.data.token,
+            icon: res.data.data.icon,
+            name: res.data.data.name,
+            phone: res.data.data.phone
+        });
+        
         wx.request({
           url: config.getForumPagerUrl,
           data: data,
@@ -186,36 +170,12 @@ Page({
             } 
           }
         })
-      }
-    });
-  },
+          
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
+        }
+      })
+    }
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
   },
 
   /**

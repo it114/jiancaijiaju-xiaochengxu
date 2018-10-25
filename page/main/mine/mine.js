@@ -21,8 +21,8 @@ Page({
     var that = this;
     wx.getStorage({
       key: "userInfo",
-      success: function (res) {
-        
+      success: function (res) { 
+    
         that.setData({
           uid: res.data.data.id,
           token: res.data.data.token,
@@ -31,12 +31,11 @@ Page({
           phone: res.data.data.phone,
           userType:res.data.data.type,
           userId: res.data.data.id,
-        })
-
-
+        })     
+        
         if (res.data.data.rootUid) {
           that.setData({
-            rootUid: res.data.data.rootUid,
+            rootUid: res.data.data.rootUid
           });
         }
 
@@ -49,17 +48,9 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log("出发")
     var that = this;
     wx.getStorage({
       key: "userInfo",
@@ -72,7 +63,7 @@ Page({
           phone: res.data.data.phone,
           userType: res.data.data.type,
           userId: res.data.data.id,
-          rootUid: res.data.rootUid,
+          rootUid: res.data.data.rootUid,
         })
         //要重新获取我的数据
         wx.request({
@@ -99,8 +90,6 @@ Page({
               }
 
 
-              console.log(res)
-
               util_js.setStrg("userInfo", res.data, function () {
 
               });
@@ -113,41 +102,11 @@ Page({
 
    
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
     var that = this;
-    console.log('/page/main/index/index?uid=' + that.data.userId + ",rootUid=" + that.data.rootUid)
     return {
       title: '家居mall',
       path: '/page/main/index/index?uid=' + that.data.userId +"&rootUid="+that.data.rootUid,
@@ -156,7 +115,6 @@ Page({
           url: config.shareUrl,
           data: { token: that.data.token },
           success: function (res) {
-            console.log(565)
           }
         })
       }

@@ -1,12 +1,15 @@
-<view wx:if="{{showModel}}" class="model">
-  <view class="modelTitle">
-    获取微信授权信息
-  </view>
-  <view class="modelBody">微信登录需要获取您的用户信息，请前往设置</view>
-  <view class="btns">
-    <button open-type="getUserInfo" class="agree" bindgetuserinfo="agreeGetUser" lang="zh_CN">去设置</button>
+<view class="modelbg" wx:if="{{showModel}}">
+  <view class="model">
+    <view class="modelTitle">
+      获取微信授权信息
+    </view>
+    <view class="modelBody">微信登录需要获取您的用户信息，请前往设置</view>
+    <view class="btns">
+      <button open-type="getUserInfo" class="agree" bindgetuserinfo="getUserInfo" lang="zh_CN">去设置</button>
+    </view>
   </view>
 </view>
+
 
 <!-- 引导用户转发 -->
 <view wx:if="{{showMask}}" class="mask">
