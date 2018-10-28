@@ -17,4 +17,8 @@
     </view>
     </navigator>
   </view>
+  <view wx:if="{{activityList.length==0}}"  class='notFound' style="width:{{winWidth}}px;height:{{winHeight - 45}}px">
+          <image src="../../images/404person.png"></image>
+          <text>亲，优惠活动正在路上~</text>
+  </view>
 </view>

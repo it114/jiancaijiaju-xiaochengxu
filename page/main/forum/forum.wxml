@@ -1,7 +1,7 @@
 
 <scroll-view scroll-y="true" class="" style="height:{{winHeight}}px;" bindscrolltolower="handleLoadMore">
   <view class='container'>
-    <view class='lists' wx:for="{{results}}" wx:for-item="item">
+    <view class='lists' wx:for="{{results}}" wx:key="" wx:for-item="item">
       <navigator url='#' class='lt_headpic' hover-class='none'><image src='{{item.simpleUser.icon}}'  mode="aspectFill"></image></navigator>
       <view class='rt_det'>
         <view class='user_name'>

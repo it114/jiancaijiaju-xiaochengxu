@@ -6,11 +6,7 @@ const app = getApp()
 var data = {};
 Page({
   data: {
-      swiper:[
-        { img: "../../commonResource/images/sp01.png", url: "" },
-        { img: "../../commonResource/images/sp02.jpg", url: "" },
-        { img: "../../commonResource/images/sp03.jpg", url: "" }        
-      ],
+      swiper:[],
       winHeight:0,
       showModel : false,
       token : "",
@@ -24,13 +20,11 @@ Page({
   },
   
   getnums(e){
-    console.log('getnums........');
     let that=this;
     let eventType=e.currentTarget.dataset.type;
     let typeid='';
     if(eventType=='秒杀'){
       typeid=1;
-
     }else if(eventType=='预约'){
       typeid=3;
     }else{
@@ -44,24 +38,23 @@ Page({
       // },
       method: 'post',
       success: function (res) {
-    console.log(res);
-
+   
       }
 
     })
 
-
-
   },
+  //关闭分享引导
   closeMask(){
     this.setData({
-      showMask:false
+       showMask:false
     });
-    //TODO,放开限制
-    // wx.setStorage({//存储已经领过红包雨了！！！
-    //   key: "should_show_share_app_mask",
-    //   data: false
-    // });
+     //存储分享引导 下次不显示
+     wx.setStorage({
+      key: "should_show_share_app_mask",
+      data: true
+   });
+
   },
   //一键领取
   receiveCoupon(){
@@ -86,98 +79,140 @@ Page({
       }
     })
   },
-  bindViewTap: function() {
-    wx.navigateTo({
-      
-    })
-  },
-  agreeGetUser: function (e) {
-    //设置用户信息本地存储
-    var that = this
-    that.setData({
-      showModel: false
-    })
-    var userInfo = e.detail.userInfo;
-    var data = {};
-    data.name = userInfo.nickName;
-    data.icon = userInfo.avatarUrl;
 
-    wx.getUserInfo({
+
+  //获取用户信息
+  getUserInfo: function (e) {
+     var that = this;
+    //如果用户点击同意授权
+    if(e.detail.userInfo){
+
+          that.setData({
+            showModel: false
+          })
+          var userInfo = e.detail.userInfo;
+          var data = {};
+          data.name = userInfo.nickName;
+          data.icon = userInfo.avatarUrl;
+          data.token = that.data.token;
+
+          //上传用户信息
+          wx.request({
+            url: config.updateUserInfourl,
+            data: data,
+            method: 'GET',
+            success: function (ret) {
+              util_js.setStrg("userInfo", ret.data, function () {
+
+              });
+            }
+          });
+          //检测是否绑定手机
+          wx.request({
+            url: config.checkphoneUrl + encodeURIComponent(that.data.token),
+            data:{
+              username:data.name
+            },
+            method: 'post',
+            success: function (res) {
+              if(res.data.data.isBandPhone=='0'){
+                let start_time=res.data.data.redPackageSet.starttime;
+              let end_time=res.data.data.redPackageSet.endtime;
+                //跳转到红包雨界面
+                    wx.redirectTo({
+                      url: '/page/main/activity/index?start_time='+start_time+'&end_time='+end_time
+                })
+
+              }
+            }
+        });
+  }else{
+    //用户拒绝授权
+    wx.showModal({
+      title: '用户未授权',
+      content: '拒绝授权,小程序将无法正常显示个人信息,点击确定重新获取授权。',
       success: function (res) {
-        var userInfo = JSON.parse(res.rawData);
-        data.name = userInfo.nickName;
-        data.icon = userInfo.avatarUrl;
-        data.token = that.data.token;
-       //检测是否绑定手机
-       let username=userInfo.nickName;
+        if (res.confirm) {
+          wx.openSetting({
+            success: (res) => {
+              if (res.authSetting["scope.userInfo"]) {
+                  //如果用户重新同意了授权登录
+                  that.setData({
+                    showModel: false
+                  })
 
-      wx.setStorage({//存储 下次不显示
-          key: "should_show_share_app_mask",
-          data: true
-      });
+                  wx.getUserInfo({
+                    success: function (res) {
+                      var userInfo = JSON.parse(res.rawData);
+                      data.name = userInfo.nickName;
+                      data.icon = userInfo.avatarUrl;
+                      data.token = that.data.token;
+                      wx.request({
+                        url: config.updateUserInfourl,
+                        data: data,
+                        method: 'GET',
+                        success: function (ret) {
+                          that.setData({
+                            userId: ret.data.id,
+                            rootUid: ret.data.rootUid,
+                          })
 
-       wx.request({
-         url: config.checkphoneUrl + encodeURIComponent(that.data.token),
-        data:{
-          username:username
-        },
-        method: 'post',
-        success: function (res) {
-          if(res.data.data.isBandPhone=='0'){
-            let start_time=res.data.data.redPackageSet.starttime;
-          let end_time=res.data.data.redPackageSet.endtime;
-            //跳转到红包雨界面
-                wx.redirectTo({
-                  url: '/page/main/activity/index?start_time='+start_time+'&end_time='+end_time
-            })
+                          if (ret.data.rootUid) {
+                            that.setData({
+                              rootUid: ret.data.rootUid,
+                            });
+                          }
 
-          }
+                          if (!ret.data.phone) {
+                            wx.redirectTo({
+                              url: '/page/main/activity/index?start_time=1&end_time=1'
+                            })
+                          }
+
+                          util_js.setStrg("userInfo", ret.data, function () {
+
+                          });
+                        }
+                      })
+                    }
+                  })
+              }
+            }, 
+            fail: function (res) {
+
+            }
+          })
+
         }
-      })
-
-        wx.request({
-          url: config.updateUserInfourl,
-          data: data,
-          method: 'GET',
-          success: function (ret) {
-            util_js.setStrg("userInfo", ret.data, function () {
-
-            });
-          }
-        })
       }
-    }) 
+    })
+
+  }
   },
 
   
   onLoad: function (opt) {
-    console.log('main index onlod ')
-    //wx.setEnableDebug({ enableDebug: false })
+
     var that = this;
+    //显示分享按钮
     wx.showShareMenu({
       withShareTicket: true,
       success: function (res) {
-        // 分享成功
-        console.log('shareMenu share success')
-        console.log('分享' + JSON.stringify(res))
       },
       fail: function (res) {
          
       }
     });
+    //是否显示分享引导
     wx.getStorage({
       key: 'should_show_share_app_mask',
       success: function(res) {
-        console.log(res);
         that.setData({
           showMask: res.data
         });
       },
     });
 
- 
-    console.log(opt)
-    console.log("========")
     if (opt.pagerId && opt.pagerId == "bargainDetail_02") {
       //这个pageId的值存在则证明首页的开启来源于用户点击来首页,同时可以通过获取到的pageId的值跳转导航到对应的详情页
       wx.navigateTo({
@@ -190,7 +225,6 @@ Page({
       })
     }
 
-
      if (opt.rootUid) {
       that.setData({
         rootUid: opt.rootUid
@@ -202,7 +236,6 @@ Page({
     wx.getStorage({
       key: "userInfo",
       success: function (res) {
-        console.log(res);
         that.setData({
           uid: res.data.data.id,
           userId: res.data.data.id,
@@ -220,30 +253,9 @@ Page({
             url: '/page/main/activity/index?start_time=1&end_time=1'
           })
         }
-        
-        //获取优惠卷
-        // wx.request({
-        //   url: config.getAllCoponUrl + '?token=' + encodeURIComponent(that.data.token),
-        //   // data: data,
-        //   method: 'POST',
-        //   success: function (res) {
-        //     console.log(res);
-        //     if (res.data.length != 0) {
-        //       that.setData({
-        //        // coupons: (res.data).slice(0, 3),
-        //         showCoupon: true,
-        //         showMask: false
-
-        //       })
-        //     }
-        //   }
-        // })
-
-      
 
      //已经授权检测是否绑定手机
      let username=res.data.data.name;
-        console.log(res.data.data.token);
      wx.request({
        url: config.checkphoneUrl + encodeURIComponent(res.data.data.token),
       data:{
@@ -258,12 +270,29 @@ Page({
               wx.redirectTo({
                 url: '/page/main/activity/index?start_time='+start_time+'&end_time='+end_time
           })
+
+        console.log('first open suc to jump red package ');
+        }else{
+
+          //获取优惠卷
+        wx.request({
+          url: config.getAllCoponUrl + '?token=' + encodeURIComponent(that.data.token),
+          method: 'POST',
+          success: function (res) {
+            if (res.data.length > 2) {
+              that.setData({
+               coupons: (res.data).slice(0, 3),
+                showCoupon: true,
+                showMask: false
+
+              })
+            }
+          }
+        })
+
         }
       } 
     })
-
-        console.log('first open suc to jump red package ')
-
 
     },
       fail:function(){
@@ -309,22 +338,16 @@ Page({
                   wx.getSetting({
                     success(res) {
                       if (!res.authSetting['scope.userInfo']) {
-                        // wx.authorize({
-                        //   scope: 'scope.userInfo',
-                        // })
-                        that.setData({
-                          showModel: true
-                        })
+                          that.setData({
+                            showModel: true
+                          })
                       } else {
                         console.log('first open failed cant showModel ');
-                        wx.setStorage({//存储 下次不显示
-                          key: "should_show_share_app_mask",
-                          data: true
-                        });
-
+                       
                         wx.getUserInfo({
                           success: function (res) {
-                            var userInfo = JSON.parse(res.rawData);
+                            var userInfo = JSON.parse(res.rawData);                           fundebug.userInfo = userInfo;
+
                             data.name = userInfo.nickName;
                             data.icon = userInfo.avatarUrl;
                             data.token = that.data.token;
@@ -387,7 +410,7 @@ Page({
       }
     })
     wx.request({
-      url: config.getActivityPagerUrl,
+      url: config.getActivityPagerUrl11,
       data: {},
       method: 'GET',
       success: function (res) {

@@ -57,9 +57,9 @@ Page({
           data: { token: res.data.data.token, status: options.tid - 1},
           method: 'GET',
           success: function (res) {
-            console.log(res)
+
             if (res.data.data.length) {
-              console.log(res.data.data);
+
               for (var i = 0; i < res.data.data.length;i++){
                 res.data.data[i].image = res.data.data[i].image.split(",")[0];
                 var obj = util_js.getImgByThisSize(res.data.data[i].image ,110, 90)
@@ -86,12 +86,12 @@ Page({
   },
   // 触摸结束事件
   touchEnd: function (e) {
-    console.log(e);
+
     var touchMove = e.changedTouches[0].pageY;
     if (touchMove - touchDot <= -40 && time < 10 && flag_hd == true) {
       flag_hd = false;
       //执行切换页面的方法
-      console.log("向上滑动");
+
       var that = this;
       that.setData({
         showLoading: true
@@ -120,9 +120,9 @@ Page({
         data: { token: that.data.token, status: 1 },
         method: 'GET',
         success: function (res) {
-          console.log(res)
+         
           if (res.data.data.length) {
-            console.log(res.data.data);
+           
             for (var i = 0; i < res.data.data.length; i++) {
               res.data.data[i].image = res.data.data[i].image.split(",")[0];
               var obj = util_js.getImgByThisSize(res.data.data[i].image, 110, 90)
@@ -145,9 +145,9 @@ Page({
         data: { token: that.data.token, status: 0 },
         method: 'GET',
         success: function (res) {
-          console.log(res)
+
           if (res.data.data.length) {
-            console.log(res.data.data);
+
             for (var i = 0; i < res.data.data.length; i++) {
               res.data.data[i].image = res.data.data[i].image.split(",")[0];
               var obj = util_js.getImgByThisSize(res.data.data[i].image, 110, 90)
@@ -170,9 +170,9 @@ Page({
         data: { token: that.data.token, status: 2 },
         method: 'GET',
         success: function (res) {
-          console.log(res)
+
           if (res.data.data.length) {
-            console.log(res.data.data);
+
             for (var i = 0; i < res.data.data.length; i++) {
               res.data.data[i].image = res.data.data[i].image.split(",")[0];
               var obj = util_js.getImgByThisSize(res.data.data[i].image, 110, 90)
@@ -195,7 +195,7 @@ Page({
         data: { token: that.data.token, status: 3 },
         method: 'GET',
         success: function (res) {
-          console.log(res)
+     
           if (res.data.data.length) {
             for (var i = 0; i < res.data.data.length; i++) {
               res.data.data[i].image = res.data.data[i].image.split(",")[0];
@@ -204,7 +204,7 @@ Page({
               res.data.data[i].style = obj.style;
               res.data.data[i].ctime = util_js.formatTimeToDay(res.data.data[i].ctime)
             }
-            console.log(res.data.data);
+
             that.setData({
               noComment_list: res.data.data
             })
@@ -220,7 +220,7 @@ Page({
         data: { token: that.data.token, status: -1 },
         method: 'GET',
         success: function (res) {
-          console.log(res)
+
           if (res.data.data.length) {
             for (var i = 0; i < res.data.data.length; i++) {
               res.data.data[i].image = res.data.data[i].image.split(",")[0];
@@ -229,7 +229,7 @@ Page({
               res.data.data[i].style = obj.style;
               res.data.data[i].ctime = util_js.formatTimeToDay(res.data.data[i].ctime)
             }
-            console.log(res.data.data);
+
             that.setData({
                list: res.data.data
             })
@@ -246,14 +246,14 @@ Page({
    * 点击tab切换 
    */
   payGood: function (e) {
-    console.log(e.currentTarget.id)
+  
     var that = this;
     wx.request({
       url: config.payGoodUrl,
       data: { token: that.data.token, oid: e.currentTarget.id },
       method: 'GET',
       success: function (res) {
-        // console.log(res)
+
         wx.request({
           url: config.orderPayParamUrl,
           data: { token: that.data.token, orderId: res.data.data.orderId, type: 1 },
@@ -266,7 +266,7 @@ Page({
               'signType': res.data.signType,
               'paySign': res.data.paySign,
               'success': function (res) {
-                console.log(res);
+
                 util_js.lessFive("购买成功！");
                 for(var i = 0; i < that.data.list.length;i++){
                   if (that.data.list[i].id == e.currentTarget.id){
@@ -278,7 +278,7 @@ Page({
                 }
               },
               'fail': function (res) {
-                console.log(res)
+
               }
             })
           }
@@ -294,7 +294,7 @@ Page({
       data: { token: that.data.token, oid: e.currentTarget.id},
       method: 'GET',
       success: function (res) {
-        console.log(res)
+
         util_js.lessFive("购买成功！");
         for (var i = 0; i < that.data.list.length; i++) {
           if (that.data.list[i].id == e.currentTarget.id) {
@@ -309,7 +309,7 @@ Page({
   },
   goComment: function (e) {
     var that = this;
-    console.log(e.currentTarget.dataset.gid)
+
     wx.navigateTo({    //保留当前页面，跳转到应用内的某个页面（最多打开5个页面，之后按钮就没有响应的）
       url: "../comment/comment?id=" + e.currentTarget.id + "&gid=" + e.currentTarget.dataset.gid
     })
@@ -321,7 +321,7 @@ Page({
       data: { token: that.data.token, oid: e.currentTarget.id},
       method: 'GET',
       success: function (res) {
-        console.log(res)
+
         util_js.lessFive("确认成功！");
         for (var i = 0; i < that.data.noGet_list.length; i++) {
           if (that.data.noGet_list[i].id == e.currentTarget.id) {
@@ -349,9 +349,7 @@ Page({
       data: { token: that.data.token, status: 2 },
       method: 'GET',
       success: function (res) {
-        console.log(res)
         if (res.data.data.length) {
-          console.log(res.data.data);
           for (var i = 0; i < res.data.data.length; i++) {
             res.data.data[i].image = res.data.data[i].image.split(",")[0];
             var obj = util_js.getImgByThisSize(res.data.data[i].image, 110, 90)
