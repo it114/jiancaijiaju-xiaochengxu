@@ -46,8 +46,6 @@ Page({
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
-    fundebug.userInfo = e.detail.userInfo;
-
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true

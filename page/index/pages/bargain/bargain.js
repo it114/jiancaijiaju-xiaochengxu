@@ -44,10 +44,10 @@ Page({
 
         wx.request({
           url: config.getBargainPagerUrl,
-          data: { token: res.data.data.token },
+          data: { token: that.data.token },
           method: 'GET',
           success: function (res) {
-            console.log(res.data)
+   
             if (res.data.data.length) {
               for (var i = 0; i < res.data.data.length; i++) {
                 res.data.data[i].image = res.data.data[i].image.split(",")[0]

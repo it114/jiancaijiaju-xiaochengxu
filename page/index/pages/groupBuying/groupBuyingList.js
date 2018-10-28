@@ -10,6 +10,7 @@ Page({
     token:"",
     groupBuyingList: [
     ],
+    loadingHidden: false
 
   },
 
@@ -31,24 +32,37 @@ Page({
           url: config.getNumsUrl + '?token=' + encodeURIComponent(res.data.data.token) + '&eventType=3',
           method: 'post',
           success: function (res) {
+            console.log(res)
           }
         })
 
         wx.request({
           url: config.getGroupByPagerUrl,
-          data: { token: res.data.data.token},
+          data: { token: that.data.token},
           method: 'GET',
           success: function (res) {
-            if (res.data.data.length) {
 
-              for(var i = 0;i < res.data.data.length;i++){
-                res.data.data[i].percent = that.toFixed(res.data.data[i].buyNum / res.data.data[i].num * 100,2);
-                // res.data.data[i].isHaveGood = 'N';
+ 
+            if (res.statusCode==200) {              
+              // getCurrentPages()[getCurrentPages().length - 1].onLoad();
+              let listData=res.data.data;
+              for(var i = 0;i < listData.length;i++){
+                listData[i].percent = (listData[i].buyNum / listData[i].num * 100).toFixed(2);
               }
-              
+             that.setData({
+                groupBuyingList: listData,
+                loadingHidden:true
+              });
+            }else{
               that.setData({
-                groupBuyingList: res.data.data
+                loadingHidden:true
               })
+              wx.showToast({
+                title: '拼团列表出错了，请稍后再试～！',
+                icon: 'none',
+                duration: 2000
+              })
+              
             }
           }
         })

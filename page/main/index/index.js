@@ -6,7 +6,7 @@ const app = getApp()
 var data = {};
 Page({
   data: {
-      swiper:[],
+      swiper:[{'image':'../../../images/no_image.png'}],
       winHeight:0,
       showModel : false,
       token : "",
@@ -109,13 +109,16 @@ Page({
           });
           //检测是否绑定手机
           wx.request({
-            url: config.checkphoneUrl + encodeURIComponent(that.data.token),
+            url: config.checkphoneUrl +encodeURIComponent(that.data.token),
             data:{
               username:data.name
             },
             method: 'post',
             success: function (res) {
-              if(res.data.data.isBandPhone=='0'){
+
+             if(res.data.success){
+                  
+                if(res.data.data.isBandPhone=='0'){
                 let start_time=res.data.data.redPackageSet.starttime;
               let end_time=res.data.data.redPackageSet.endtime;
                 //跳转到红包雨界面
@@ -124,6 +127,64 @@ Page({
                 })
 
               }
+              }else{
+                wx.showModal({
+                  title: '登录已过期',
+                  content: '小程序将无法正常使用,点击确定重新登录。',
+                  success: function (res) {
+                    if (res.confirm) {
+                       
+                      wx.login({
+                        success: function (res) {
+                          var obj = {code:res.code};
+                          if(that.data.uid){
+                            obj.uid = that.data.uid;
+                          }
+              
+                          if (that.data.rootUid) {
+                            obj.rootUid = that.data.rootUid;
+              
+                          } else {
+                            obj.rootUid = that.data.uid;
+                          }
+                          
+                          // setTimeout(function () {
+                            wx.request({
+                              url: config.registerUserByWeixinUrl,
+                              data:obj,
+                              success: function (res) {
+              
+                                 //重新获取token
+                                that.setData({
+                                  token : res.data.data.token,
+                                  userId: res.data.data.id
+                                })
+              
+                                if (res.data.data.rootUid) {
+                                  that.setData({
+                                    rootUid: res.data.data.rootUid,
+                                  });
+                                }
+                                that.onLoad();//刷新
+        
+                              },
+                              fail: function (res) {
+                                // console.log(res)
+                              }
+                            })
+                          // }, 500)
+                        }
+                      });
+
+
+
+            
+                    }
+                  }
+                })
+
+              }
+              
             }
         });
   }else{
@@ -163,7 +224,7 @@ Page({
                             });
                           }
 
-                          if (!ret.data.phone) {
+                          if (!ret.data.data.phone) {
                             wx.redirectTo({
                               url: '/page/main/activity/index?start_time=1&end_time=1'
                             })
@@ -212,13 +273,8 @@ Page({
         });
       },
     });
-
-    if (opt.pagerId && opt.pagerId == "bargainDetail_02") {
-      //这个pageId的值存在则证明首页的开启来源于用户点击来首页,同时可以通过获取到的pageId的值跳转导航到对应的详情页
-      wx.navigateTo({
-        url: '/page/index/pages/bargainDetail_02/bargainDetail_02?uid=' + opt.uid + "&bid=" +opt.bid,
-      })
-    }
+  
+    if(opt){
     if (opt.uid) {
       that.setData({
         uid: opt.uid
@@ -231,10 +287,21 @@ Page({
       })
     }
 
+    if ( opt.pagerId == "bargainDetail_02") {
+      //这个pageId的值存在则证明首页的开启来源于用户点击来首页,同时可以通过获取到的pageId的值跳转导航到对应的详情页
+      wx.navigateTo({
+        url: '/page/index/pages/bargainDetail_02/bargainDetail_02?uid=' + opt.uid + "&bid=" +opt.bid,
+      })
+    }
+  }
 
 
+//获取本地缓存用户信息
     wx.getStorage({
       key: "userInfo",
+      complete:function(res){
+         console.log(res);
+      },
       success: function (res) {
         that.setData({
           uid: res.data.data.id,
@@ -257,12 +324,14 @@ Page({
      //已经授权检测是否绑定手机
      let username=res.data.data.name;
      wx.request({
-       url: config.checkphoneUrl + encodeURIComponent(res.data.data.token),
+       url: config.checkphoneUrl + encodeURIComponent(that.data.token),
       data:{
         username:username,
       },
       method: 'post',
-      success: function (res) {       
+      success: function (res) {   
+        if(res.data.success){
+
         if(res.data.data.isBandPhone=='0'){
         let start_time=res.data.data.redPackageSet.starttime;
         let end_time=res.data.data.redPackageSet.endtime;
@@ -291,28 +360,78 @@ Page({
         })
 
         }
+
+      }else{
+        wx.showModal({
+          title: '登录已过期',
+          content: '小程序将无法正常使用,点击确定重新登录。',
+          success: function (res) {
+            if (res.confirm) {
+              wx.login({
+                success: function (res) {
+                  var obj = {code:res.code};
+                  if(that.data.uid){
+                    obj.uid = that.data.uid;
+                  }
+      
+                  if (that.data.rootUid) {
+                    obj.rootUid = that.data.rootUid;
+      
+                  } else {
+                    obj.rootUid = that.data.uid;
+                  }
+                  
+                  // setTimeout(function () {
+                    wx.request({
+                      url: config.registerUserByWeixinUrl,
+                      data:obj,
+                      success: function (res) {
+      
+                         //重新获取token
+                        that.setData({
+                          token : res.data.data.token,
+                          userId: res.data.data.id
+                        })
+      
+                        if (res.data.data.rootUid) {
+                          that.setData({
+                            rootUid: res.data.data.rootUid,
+                          });
+                        }
+                        that.onLoad();//刷新
+
+                      },
+                      fail: function (res) {
+                        // console.log(res)
+                      }
+                    })
+                  // }, 500)
+                }
+              });
+               
+
+            }
+          }
+        })
+      }
       } 
     })
 
     },
       fail:function(){
-        console.log('first open failed to get user info ')
+
         wx.login({
           success: function (res) {
-            console.log('first open login suc ')
-
             var obj = {code:res.code};
             if(that.data.uid){
               obj.uid = that.data.uid;
-              console.log('first open login suc uid ' + that.data.uid);
             }
 
             if (that.data.rootUid) {
               obj.rootUid = that.data.rootUid;
-              console.log('first open login suc rootUid '+that.data.rootUid);
+
             } else {
               obj.rootUid = that.data.uid;
-              console.log('first open login suc rootUid ' + that.data.uid);
             }
             
             // setTimeout(function () {
@@ -320,7 +439,7 @@ Page({
                 url: config.registerUserByWeixinUrl,
                 data:obj,
                 success: function (res) {
-                  console.log('first open failed to get user info '+res);
+
 
                   that.setData({
                     token : res.data.data.token,
@@ -333,29 +452,30 @@ Page({
                     });
                   }
 
-
-
+                   //检查授权
                   wx.getSetting({
                     success(res) {
+                      //没有授权
                       if (!res.authSetting['scope.userInfo']) {
                           that.setData({
                             showModel: true
                           })
                       } else {
-                        console.log('first open failed cant showModel ');
-                       
+
+                      //已经授权
                         wx.getUserInfo({
                           success: function (res) {
-                            var userInfo = JSON.parse(res.rawData);                           fundebug.userInfo = userInfo;
-
+                            var userInfo = JSON.parse(res.rawData);
                             data.name = userInfo.nickName;
                             data.icon = userInfo.avatarUrl;
                             data.token = that.data.token;
+                            //获取用户信息
                             wx.request({
                               url: config.updateUserInfourl,
                               data: data,
                               method: 'GET',
                               success: function (ret) {
+                                
                                 that.setData({
                                   userId: ret.data.id,
                                   rootUid: ret.data.rootUid,
@@ -367,7 +487,7 @@ Page({
                                   });
                                 }
 
-                                if (!ret.data.phone) {
+                                if (!ret.data.data.phone) {
                                   wx.redirectTo({
                                     url: '/page/main/activity/index?start_time=1&end_time=1'
                                   })
@@ -404,13 +524,17 @@ Page({
       data: data,
       method: 'GET',
       success: function (res) {
-        that.setData({
-          swiper: res.data
+
+        if(res.statusCode==200){
+          that.setData({
+            swiper: res.data
         })
+        }
+        
       }
     })
     wx.request({
-      url: config.getActivityPagerUrl11,
+      url: config.getActivityPagerUrl,
       data: {},
       method: 'GET',
       success: function (res) {

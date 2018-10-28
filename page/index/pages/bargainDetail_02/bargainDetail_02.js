@@ -219,8 +219,6 @@ Page({
                           data.name = userInfo.nickName;
                           data.icon = userInfo.avatarUrl;
                           data.token = that.data.token;
-                          fundebug.userInfo = userInfo;
-
                           wx.request({
                             url: config.updateUserInfourl,
                             data: data,
