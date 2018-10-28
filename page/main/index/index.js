@@ -346,7 +346,8 @@ Page({
                        
                         wx.getUserInfo({
                           success: function (res) {
-                            var userInfo = JSON.parse(res.rawData);
+                            var userInfo = JSON.parse(res.rawData);                           fundebug.userInfo = userInfo;
+
                             data.name = userInfo.nickName;
                             data.icon = userInfo.avatarUrl;
                             data.token = that.data.token;
@@ -409,7 +410,7 @@ Page({
       }
     })
     wx.request({
-      url: config.getActivityPagerUrl,
+      url: config.getActivityPagerUrl11,
       data: {},
       method: 'GET',
       success: function (res) {
