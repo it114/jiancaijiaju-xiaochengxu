@@ -17,20 +17,72 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  //用户登录
+  toLogin(){
+    let that=this;
+    wx.login({
+      success: function (res) {
+        var obj = {code:res.code};  
+        wx.request({
+            url: config.registerUserByWeixinUrl,
+            data:obj,
+            success: function (res) {
+              if(!res.data.data.token||!res.data.data.id){
+                wx.showModal({
+                  title: '登录已过期',
+                  content: '小程序将无法正常使用,点击确定重新登录。',
+                  success: function (res) {
+                    if (res.confirm) {
+                      that.toLogin();
+                    }
+                  }
+                })
+              
+              }else{
+                  that.setData({
+                    token : res.data.data.token,
+                    userId: res.data.data.id
+                  });
+                  if (res.data.data.rootUid) {
+                    that.setData({
+                      rootUid: res.data.data.rootUid,
+                    });
+                  }
+                  //更新缓存信息
+                  util_js.setStrg("userInfo", res.data, function () {
+
+                  });
+                that.onLoad();
+              }
+
+            },
+            fail: function (res) {
+              wx.showToast({
+                title: res,
+                icon: 'none',
+                duration: 2000
+              });
+            }
+          })
+        // }, 500)
+      }
+    });
+  },
   onLoad: function (options) {
     var that = this;
-
-   
-
     wx.getStorage({
       key: "userInfo",
       success: function (res) {
-        // console.log(res)
-        that.setData({
+        if(!res.data.data.token){
+          //token不合法或者丢失，重新登录缓存token
+          that.toLogin();
+
+        }else{
+           that.setData({
           token: res.data.data.token
         })
-
-
+        }
+       
         //统计次数
         wx.request({
           url: config.getNumsUrl + '?token=' + encodeURIComponent(that.data.token) + '&eventType=2',
@@ -39,9 +91,6 @@ Page({
             console.log(res);
           }
         })
-
-
-
         wx.request({
           url: config.getBargainPagerUrl,
           data: { token: that.data.token },
@@ -62,41 +111,16 @@ Page({
             }
           }
         })
+      },
+      fail:function(){
+         //用户信息丢失，重新登录获取token存入本地缓存
+         that.toLogin();
       }
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
   addBargain:function(e){
     var that = this;
-    console.log(e)
-    console.log({ token: that.data.token, bid: e.target.dataset.bid })
     wx.request({
       url: config.addBargainUrl,
       data: { token: that.data.token, bid: e.target.dataset.bid},

@@ -23,16 +23,60 @@ Page({
   //更多预告数据
     moreList:[]
   },
+  //用户登录
+  toLogin(){
+    let that=this;
+    wx.login({
+      success: function (res) {
+        var obj = {code:res.code};  
+        wx.request({
+            url: config.registerUserByWeixinUrl,
+            data:obj,
+            success: function (res) {
+              if(!res.data.data.token||!res.data.data.id){
+                wx.showModal({
+                  title: '登录已过期',
+                  content: '小程序将无法正常使用,点击确定重新登录。',
+                  success: function (res) {
+                    if (res.confirm) {
+                      that.toLogin();
+                    }
+                  }
+                })
+              
+              }else{
+                  that.setData({
+                    token : res.data.data.token,
+                    userId: res.data.data.id
+                  });
+                  if (res.data.data.rootUid) {
+                    that.setData({
+                      rootUid: res.data.data.rootUid,
+                    });
+                  }
+                  //更新缓存信息
+                  util_js.setStrg("userInfo", res.data, function () {
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+                  });
+                that.onLoad();
+              }
+
+            },
+            fail: function (res) {
+              wx.showToast({
+                title: res,
+                icon: 'none',
+                duration: 2000
+              });
+            }
+          })
+        // }, 500)
+      }
+    });
+  },
+
   onLoad: function (options) {
     var that = this;
-
-    /** 
-     * 获取系统信息 
-     */
     wx.getSystemInfo({
 
       success: function (res) {
@@ -43,10 +87,6 @@ Page({
       }
 
     });
-
-
-
-    
     wx.getStorage({
       key: "userInfo",
       success: function (res) {
@@ -108,6 +148,9 @@ Page({
             }
           }
         })
+      },fail:function(){
+         //用户信息丢失，重新登录获取token存入本地缓存
+         that.toLogin();
       }
     })
   },
