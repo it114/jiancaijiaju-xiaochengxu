@@ -96,25 +96,29 @@ Page({
           data: { token: that.data.token },
           method: 'GET',
           success: function (res) {
-   
-            if (res.data.data.length) {
-              for (var i = 0; i < res.data.data.length; i++) {
-                res.data.data[i].image = res.data.data[i].image.split(",")[0]
-                var imgArr = [];
-                var obj = util_js.getImgByThisSize(res.data.data[i].image, 100, 100);
-                res.data.data[i].style = obj.style;
-                res.data.data[i].image = obj.url;
+              if(res.data.success){
+                  if (res.data.data.length) {
+                    for (var i = 0; i < res.data.data.length; i++) {
+                      res.data.data[i].image = res.data.data[i].image.split(",")[0]
+                      var imgArr = [];
+                      var obj = util_js.getImgByThisSize(res.data.data[i].image, 100, 100);
+                      res.data.data[i].style = obj.style;
+                      res.data.data[i].image = obj.url;
+                    }
+                    that.setData({
+                      bargainList: res.data.data
+                    })
+                  }
+              }else{
+                 //用户信息丢失或者token失效，重新登录获取token存入本地缓存
+                 that.toLogin();
               }
-              that.setData({
-                bargainList: res.data.data
-              })
-            }
+
           }
         })
       },
       fail:function(){
-         //用户信息丢失，重新登录获取token存入本地缓存
-         that.toLogin();
+        
       }
     })
   },

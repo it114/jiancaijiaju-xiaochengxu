@@ -110,6 +110,7 @@ Page({
           data: { token: res.data.data.token },
           method: 'GET',
           success: function (res) {
+           if(res.data.success){
             if (res.data && res.data.data&&res.data.data.clientGoodList) {
               for (var i = 0; i < res.data.data.clientGoodList.length; i++) {
                 res.data.data.clientGoodList[i].image = res.data.data.clientGoodList[i].image.split(",")[0]
@@ -146,6 +147,10 @@ Page({
                 that.timeDown(this_time);
               }
             }
+          }else{
+            //用户信息丢失或者token过期，重新登录获取token存入本地缓存
+            that.toLogin();
+          }
           }
         })
       },fail:function(){

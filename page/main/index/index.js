@@ -1,16 +1,14 @@
-//index.js
 //获取应用实例
 var config = require('../../../config.js');
 var util_js = require('../../../util.js');
-
 Page({
   data: {
       swiper:[{'image':'../../../images/no_image.png'}],
       winHeight:0,
       showModel : false,
-      token : "",
+      token: "",
       activityList:"",
-      uid : "",
+      uid: "",
       userId: "",
       rootUid:"",
       showMask:false,
@@ -30,15 +28,12 @@ Page({
       typeid=2
     }
     wx.request({
-      url: config.getNumsUrl + '?token=' + encodeURIComponent(that.data.token)+'&eventType='+typeid,
-
+      url: config.getNumsUrl + '?token='+encodeURIComponent(that.data.token)+'&eventType='+typeid,
       method: 'post',
       success: function (res) {
-   
+          
       }
-
     })
-
   },
   //关闭分享引导
   closeMask(){
@@ -47,12 +42,12 @@ Page({
     });
      //存储分享引导 下次不显示
      wx.setStorage({
-      key: "should_show_share_app_mask",
-      data: false
-   });
-   
+        key: "should_show_share_app_mask",
+        data: false
+    });
 
   },
+
   //一键领取
   receiveCoupon(){
     let that=this;
@@ -76,21 +71,40 @@ Page({
       }
     })
   },
-    //用户登录
-    toLogin(){
+  //上传用户信息
+  upUserInfo(data){
+      let that=this;
+      //上传用户信息
+      wx.request({
+        url: config.updateUserInfourl,
+        data: data,
+        method: 'GET',
+        success: function (ret) {
+          that.setData({
+            userId: ret.data.data.id,
+            rootUid: ret.data.data.rootUid,
+            name:ret.data.data.name
+          }); 
+          util_js.setStrg("userInfo", ret.data, function () {
+
+          });
+        }
+      });
+  },
+  //用户登录
+  toLogin(){
       let that=this;
       wx.login({
         success: function (res) {
           var obj = {code:res.code};
           if(that.data.uid){
             obj.uid = that.data.uid;
+            if (that.data.rootUid) {
+              obj.rootUid = that.data.rootUid;
+            } else{
+              obj.rootUid = that.data.uid;
+            }
           }
-          if (that.data.rootUid) {
-            obj.rootUid = that.data.rootUid;
-          } else {
-            obj.rootUid = that.data.uid;
-          }
-
           wx.request({
               url: config.registerUserByWeixinUrl,
               data:obj,
@@ -116,20 +130,15 @@ Page({
                         rootUid: res.data.data.rootUid,
                       });
                     }
-                    //更新缓存信息
-                    util_js.setStrg("userInfo", res.data, function () {
-
-                    });
-                  that.onLoad();
                 }
 
               },
               fail: function (res) {
-                wx.showToast({
-                  title: res,
-                  icon: 'none',
-                  duration: 2000
-                });
+                  wx.showToast({
+                    title: res,
+                    icon: 'none',
+                    duration: 2000
+                  });
               }
             })
           // }, 500)
@@ -139,6 +148,7 @@ Page({
     //检查是否绑定手机
     checkphone(){
           let that=this;
+          console.log(that.data.name)
           wx.request({
             url: config.checkphoneUrl +encodeURIComponent(that.data.token),
             data:{
@@ -149,13 +159,10 @@ Page({
 
              if(res.data.success){
                 if(res.data.data.isBandPhone=='0'){
-                  let start_time=res.data.data.redPackageSet.starttime;
-                  let end_time=res.data.data.redPackageSet.endtime;
                   //跳转到红包雨界面
                       wx.redirectTo({
-                        url: '/page/main/activity/index?start_time='+start_time+'&end_time='+end_time
+                        url: '/page/main/activity/index?start_time=1&end_time=1'
                   });
-
                 }else{
                       //获取优惠卷
                       wx.request({
@@ -168,7 +175,6 @@ Page({
                                     coupons: (res.data).slice(0, 3),
                                     showCoupon: true,
                                     showMask: false
-
                                   })
                                 }
                               }else{
@@ -177,8 +183,6 @@ Page({
                               }     
                         }
                       })
-
-
                 }
               }else{
                 //如果token过期或不存在，重新登录
@@ -191,34 +195,21 @@ Page({
 //更新用户信息
 updateUserInfo(){
   let that=this;
+  let data={};
   wx.getUserInfo({
     success: function (res) {
       var userInfo = JSON.parse(res.rawData);
       data.name = userInfo.nickName;
       data.icon = userInfo.avatarUrl;
-      data.token = that.data.token;
-      wx.request({
-        url: config.updateUserInfourl,
-        data: data,
-        method: 'GET',
-        success: function (ret) {
-          that.setData({
-            userId: ret.data.id,
-            rootUid: ret.data.rootUid,
-            name:    ret.data.name
-          })
+      if(that.data.token){
+        data.token = that.data.token;
+        that.upUserInfo(data);
+      }else{
+        that.toLogin();
+        that.updateUserInfo();
+      }
+      
 
-          if (ret.data.rootUid) {
-            that.setData({
-              rootUid: ret.data.rootUid,
-            });
-          }
-          that.checkphone();
-          util_js.setStrg("userInfo", ret.data, function () {
-
-          });
-        }
-      })
     }
   })
 },
@@ -230,26 +221,24 @@ updateUserInfo(){
 
           that.setData({
             showModel: false
-          })
+          });
           var userInfo = e.detail.userInfo;
           var data = {};
           data.name = userInfo.nickName;
           data.icon = userInfo.avatarUrl;
-          data.token = that.data.token;
-
-          //上传用户信息
-          wx.request({
-            url: config.updateUserInfourl,
-            data: data,
-            method: 'GET',
-            success: function (ret) {
-              
-              util_js.setStrg("userInfo", ret.data, function () {
-
-              });
-            }
+          that.setData({
+            name: userInfo.nickName
           });
-          that.checkphone();
+          if(that.data.token){
+            data.token = that.data.token;
+            that.upUserInfo(data);
+            that.checkphone();
+          }else{
+            that.toLogin();
+            that.updateUserInfo();
+          }
+        
+          
   }else{
     //用户拒绝授权
     wx.showModal({
@@ -280,18 +269,14 @@ updateUserInfo(){
 
   }
   },
-
-  
   onLoad: function (opt) {
-
     var that = this;
     //显示分享按钮
     wx.showShareMenu({
       withShareTicket: true,
       success: function (res) {
       },
-      fail: function (res) {
-         
+      fail: function (res) {       
       }
     });
     //是否显示分享引导
@@ -309,20 +294,17 @@ updateUserInfo(){
 
       }
     });
-  
     if(opt){
     if (opt.uid) {
       that.setData({
         uid: opt.uid
       })
     }
-
      if (opt.rootUid) {
       that.setData({
         rootUid: opt.rootUid
       })
     }
-
     if ( opt.pagerId == "bargainDetail_02") {
       //这个pageId的值存在则证明首页的开启来源于用户点击来首页,同时可以通过获取到的pageId的值跳转导航到对应的详情页
       wx.navigateTo({
@@ -335,22 +317,23 @@ updateUserInfo(){
   wx.getStorage({
       key: "userInfo",
       complete:function(res){
-        //  console.log(res);
+        console.log('完成请求');
       },
       success: function (res) {
         if(!res.data.data.id||!res.data.data.token){
           that.toLogin();
+          that.updateUserInfo();
         }else{
            that.setData({
-          name:res.data.data.name,
-          uid: res.data.data.id,
-          userId: res.data.data.id,
-          token:res.data.data.token
+              name:res.data.data.name,
+              uid: res.data.data.id,
+              userId: res.data.data.id,
+              token:res.data.data.token
         });
 
         if (res.data.data.rootUid) {
           that.setData({
-            rootUid: res.data.data.rootUid,
+              rootUid: res.data.data.rootUid,
           });
         }
         that.checkphone();
@@ -358,28 +341,24 @@ updateUserInfo(){
        
       },
       fail:function(){
-        
           //检查授权
           wx.getSetting({
-              success(res) {
-                console.log('未授权');
+              success(res) { 
                 //没有授权,弹出授权框
-                if (!res.authSetting['scope.userInfo']) {
+                if (!res.authSetting['scope.userInfo']){
+                    console.log('未授权');
                     that.setData({
-                      showModel: true
+                        showModel: true
                     });
-                    // that.toLogin();
+                    that.toLogin();
                 } else {
-                //已经授权,重新登录
-                that.toLogin();
-
+                    //已经授权,更新用户信息
+                        that.updateUserInfo();
                 }
               }
         })
       }
     })
-      
-    
 
     wx.request({
       url: config.getBannerListUrl,
@@ -388,8 +367,8 @@ updateUserInfo(){
       success: function (res) {
         if(res.statusCode==200){
           that.setData({
-            swiper: res.data
-        })
+              swiper: res.data
+          })
         }
         
       }

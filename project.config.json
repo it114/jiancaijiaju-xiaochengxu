@@ -11,9 +11,9 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.2.5",
+	"libVersion": "2.3.2",
 	"appid": "wx0cac5c63162caa71",
-	"projectname": "jiancaijiaju-xiaosichuan",
+	"projectname": "jiancaijiaju-nanjing-20181021",
 	"isGameTourist": false,
 	"condition": {
 		"search": {

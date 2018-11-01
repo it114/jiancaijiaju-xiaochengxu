@@ -348,14 +348,7 @@ formatDateTime(inputTime) {
 },
   onLoad:function(options){
     let that=this;
-    //显示时间
- 
-    let start_time=that.formatDateTime(Number(options.start_time));
-    let end_time= that.formatDateTime(Number(options.end_time));
-     that.setData({
-       start_time:start_time,
-       end_time:end_time
-     })  
+
      // 获取手机屏幕宽高
       wx.getSystemInfo({
         success: function (res) {

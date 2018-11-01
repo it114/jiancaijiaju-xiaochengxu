@@ -103,6 +103,12 @@ Page({
             }
           }
         })
+      },fail:function(){
+        wx.showToast({
+          title: '缺少用户信息，请在首页授权后再试',
+          icon: 'none',
+          duration: 2000
+        });
       }
     });
   },
@@ -172,6 +178,12 @@ Page({
         })
           
 
+        },fail:function(){
+          wx.showToast({
+            title: '缺少用户信息，请在首页授权后再试',
+            icon: 'none',
+            duration: 2000
+          });
         }
       })
     }

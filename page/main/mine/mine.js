@@ -14,16 +14,13 @@ Page({
     rootUid:"",
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+
   onLoad: function () {
     var that = this;
     wx.getStorage({
       key: "userInfo",
       success: function (res) { 
-    
-        that.setData({
+          that.setData({
           uid: res.data.data.id,
           token: res.data.data.token,
           icon: res.data.data.icon,
@@ -38,18 +35,23 @@ Page({
             rootUid: res.data.data.rootUid
           });
         }
+        
+  
+      },fail:function(){
+         ////用户信息丢失或者首页未授权直接进入，需要重新登录获取存入本地缓存
+         wx.showToast({
+          title: '缺少用户信息，请在首页授权后再试',
+          icon: 'none',
+          duration: 2000
+        });
 
 
-      
       }
     })
     
   
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
     var that = this;
     wx.getStorage({
@@ -96,6 +98,12 @@ Page({
             }
 
           }
+        });
+      },fail:function(){
+        wx.showToast({
+          title: '缺少用户信息，请在首页授权后再试',
+          icon: 'none',
+          duration: 2000
         });
       }
     })
