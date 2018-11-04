@@ -38,7 +38,7 @@ var config = {
   getForumPagerUrl: host + '/forum/getForumPager',//- 获取论坛数据
   getForumInfoUrl: host + '/forum/getForumInfo',//- 获取论坛详情
   getForumCommentPagerUrl: host + '/forum/getCommentPager',//- 获取论坛详情里面的评论列表
-  uploadImgUrl: "https://web.jiancaiyg.com/storage/handle",//上传图片
+  uploadImgUrl: host+"/storage/handle",//上传图片
   publishForumUrl: host + '/forum/publishForum',//- 论坛  发帖
   addForumCommentUrl: host + '/forum/addForumComment',//- 论坛 回复帖子
 

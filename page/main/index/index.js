@@ -53,7 +53,7 @@ Page({
     let that=this;
     wx.request({
       url: config.receiveCouponUrl+'?token='+encodeURIComponent(that.data.token),
-      data: data,
+      // data: data,
       method: 'POST',
       success: function (res) {
 
@@ -170,9 +170,12 @@ Page({
                         method: 'POST',
                         success: function (res) {
                              if(res.data.success){
-                                if (res.data.length > 2) {
+                              console.log(res.data)
+
+                                if (res.data.data.length > 2) {
+                                  console.log(res.data)
                                   that.setData({
-                                    coupons: (res.data).slice(0, 3),
+                                    coupons: (res.data.data).slice(0, 3),
                                     showCoupon: true,
                                     showMask: false
                                   })
