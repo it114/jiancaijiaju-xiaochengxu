@@ -116,7 +116,7 @@ Page({
   onShareAppMessage: function () {
     var that = this;
     return {
-      title: '家居mall',
+      title: '点我得红包，最高100元',
       path: '/page/main/index/index?uid=' + that.data.userId +"&rootUid="+that.data.rootUid,
       success: function (res) {
         wx.request({

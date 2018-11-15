@@ -12,8 +12,9 @@
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 44}}px;margin-top:44px;"  bindchange="bindChange">
   <swiper-item>
     <scroll-view scroll-y="true" class="" style="height:{{winHeight - 44}}px;" bindscrolltolower="handleLoadMore">
-      <view class='item-coupon-content' wx:for="{{list}}" bindtap="showtip">
+      <view class='item-coupon-content' wx:for="{{list}}" data-id="{{item.id}}" bindtap="showtip">       
           <image class="item-coupon-bg" src="../../icons/bg-large.png">
+          <!-- <view class='usedCover' v-if="coverindex=={{index}}"></view> -->
           <view class="item-info">
               <image class="item-coupon-img" src="{{item.icon}}"></image>
               <view style="margin-left:20rpx;">
@@ -36,9 +37,10 @@
   </swiper-item>
   <swiper-item>
     <scroll-view scroll-y="true" class="" style="height:{{winHeight - 44}}px;" bindscrolltolower="handleLoadMore">
-      <view class='item-coupon-content' wx:for="{{list_used}}" bindtap="showtip">
-
+      <view class='item-coupon-content' wx:for="{{list_used}}" >
+              
           <image class="item-coupon-bg" src="../../icons/bg-large.png">
+          <view class='usedCover'></view>
           <view class="item-info">
           <image class="item-coupon-img" src="{{item.icon}}"></image>
           <view style="margin-left:20rpx;">
@@ -49,8 +51,8 @@
             <text class="coupon-money">¥<text class="money-num">{{item.offer}}</text></text>
             <text class="item-coupon-time" style="margin:0 auto;">满{{item.full}}可用</text>
           </view>
-          <view class="toUse">
-            <text>去</text>
+          <view class="toUse" style="color:#777;">
+            <text>已</text>
             <text>使</text>
             <text>用</text>
           </view>
@@ -61,8 +63,9 @@
   </swiper-item>
   <swiper-item>
     <scroll-view scroll-y="true" class="" style="height:{{winHeight - 44}}px;" bindscrolltolower="handleLoadMore">
-      <view class='item-coupon-content' wx:for="{{list_timed}}" bindtap="showtip">
+      <view class='item-coupon-content' wx:for="{{list_timed}}" >
           <image class="item-coupon-bg" src="../../icons/bg-large.png">
+           <view class='usedCover'></view>
           <view class="item-info">
           <image class="item-coupon-img" src="{{item.icon}}"></image>
           <view style="margin-left:20rpx;">
@@ -73,10 +76,10 @@
             <text class="coupon-money">¥<text class="money-num">{{item.offer}}</text></text>
             <text class="item-coupon-time" style="margin:0 auto;">满{{item.full}}可用</text>
           </view>
-          <view class="toUse">
-            <text>去</text>
-            <text>使</text>
-            <text>用</text>
+          <view class="toUse" style="color:#777;">
+            <text>已</text>
+            <text>过</text>
+            <text>期</text>
           </view>
           </view>
         </image>

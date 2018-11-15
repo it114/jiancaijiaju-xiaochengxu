@@ -5,13 +5,15 @@
 // 小程序后台服务解决方案：https://www.qcloud.com/solution/la
 //var host = "https://nanjing-web.jiancaiyg.com";
 // var host = "https://web-dev.texuan.wang"; 
-var host = "https://web-online.texuan.wang";
+//var host = "https://web-online.texuan.wang";
 //var host = "http://proxy-wx.texuan.wang:4901";
 //var host = "http://192.168.3.2:8080" ;
+var host = "https://baoding-web.jiancaiyg.com";
 
 var config = {
   // 下面的地址配合云端 Server 工作
   // 用code换取openId
+  useCoupon:host+'/coupon/useCouponNew',
   getAllCoponUrl: host + '/coupon/getAllCoupon',//获取优惠券列表
   receiveCouponUrl:host+'/coupon/receiveAllCoupon',//领取优惠卷
   getCouponUrl: host +'/coupon/getMyCouponPagerNew',//自己的优惠券

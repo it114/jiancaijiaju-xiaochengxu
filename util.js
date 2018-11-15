@@ -1,21 +1,7 @@
-//临时控制跳转
-
-// var pagecon=0;
-// function test(){
-//   if(pagecon==0){
-//     pagecon=pagecon+1;
-//     return true
-
-
-//   }
-// }
-
-
 
 var cfg_js = require('config.js');
 //用户登录
 function getNewSession(saveSesionOk) {
-  // console.log(cfg_js.registerUserByWeixinUrl)
   wx.login({
     success: function (res) {
       // console.log(res)
@@ -49,7 +35,7 @@ function shareApp (){
       })
       console.log('/page/main/index/index?uid=' + 56126251)
       var shareObj = {
-        title: '家居mall',
+        title: '点我得红包，最高100元',
         path: '/page/main/index/index?uid=' + 56126251
       }
       
@@ -94,7 +80,6 @@ function getImgByThisSize(url, showWidth, showHieght) {
     return getImgSizeBySize(url, showWidth, showHieght);
   }
 }
-
 
 //压缩图片
 function comperssImge(url, showWidth) {
@@ -145,7 +130,6 @@ function getImgSizeBySize(url, showWidth, showHieght) {
   }
 
 }
-
 
 //获取图片真实尺寸
 function getImageRealSize(url) {
@@ -203,7 +187,6 @@ function formatTimeToDay(numbers) {
     returnArr.push(date.getFullYear());
     returnArr.push(formatNumber(date.getMonth() + 1));
     returnArr.push(formatNumber(date.getDate()));
-
     returnArr.push(formatNumber(date.getHours()));
     returnArr.push(formatNumber(date.getMinutes()));
     returnArr.push(formatNumber(date.getSeconds()));
@@ -213,7 +196,6 @@ function formatTimeToDay(numbers) {
     }
     return format;
   }
-
 
 //封装post请求
 function post(url, data, success) {
@@ -388,9 +370,6 @@ function pushWx(session) {
 
 //模板
 function muban(formId, data, time, content, session) {
-  // console.log("模板发送成功")
-  // console.log("给模板信息：","formId:",formId,"日期：",data,"时间:",time,"内容:",content)
-
   var url = cfg_js.gets('sendMsg');
   var data = {
     "session": session,

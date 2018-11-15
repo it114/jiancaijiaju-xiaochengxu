@@ -11,7 +11,7 @@ Page({
       uid: "",
       userId: "",
       rootUid:"",
-      showMask:false,
+      showMask:true,
       showCoupon:false,
       coupons:[]
   },
@@ -41,10 +41,10 @@ Page({
        showMask:false
     });
      //存储分享引导 下次不显示
-     wx.setStorage({
-        key: "should_show_share_app_mask",
-        data: false
-    });
+    //  wx.setStorage({
+    //     key: "should_show_share_app_mask",
+    //     data: false
+    // });
 
   },
 
@@ -66,6 +66,11 @@ Page({
             icon: 'success',
             duration: 2000
           });
+          //记录当前领取时间
+          let timestamp=new Date().getTime();
+          util_js.setStrg("getTime", timestamp, function () {
+          });
+
         }
         
       }
@@ -164,16 +169,61 @@ Page({
                         url: '/page/main/activity/index?start_time=1&end_time=1'
                   });
                 }else{
+
+                  //获取上一次优惠卷领取时间
+                  wx.getStorage({
+                    key: 'getTime',
+                    success: function(res) { 
+                      let pretime=new Date(res.data)
+                      let preyear = pretime.getFullYear();
+                      let premonth = pretime.getMonth() + 1;
+                      let prestrDate = pretime.getDate();
+
+                      //获取当前时间
+                      let date = new Date();
+                      let year = date.getFullYear();
+                      let month = date.getMonth() + 1;
+                      let strDate = date.getDate();
+                      if(preyear==year&&month==premonth&&strDate==prestrDate){
+                        //在同一天，即已经领取过
+                        that.setData({
+                          showCoupon: false
+                        });
+                      }else{
+                          //时间限制已经刷新，重新获取优惠卷
+                          wx.request({
+                            url: config.getAllCoponUrl + '?token=' + encodeURIComponent(that.data.token),
+                            method: 'POST',
+                            success: function (res) {
+                                if(res.data.success){
+
+                                    if (res.data.data.length > 2) {
+                                      that.setData({
+                                        coupons: (res.data.data).slice(0, 3),
+                                        showCoupon: true,
+                                        // showMask: false
+                                      })
+                                    }
+                                  }else{
+                                    //如果token过期或不存在，重新登录
+                                    that.toLogin();
+                                  }     
+                            }
+                          })
+
+                      }
+ 
+                     
+                    },
+                    fail:function(){
                       //获取优惠卷
                       wx.request({
                         url: config.getAllCoponUrl + '?token=' + encodeURIComponent(that.data.token),
                         method: 'POST',
                         success: function (res) {
-                             if(res.data.success){
-                              console.log(res.data)
+                            if(res.data.success){
 
                                 if (res.data.data.length > 2) {
-                                  console.log(res.data)
                                   that.setData({
                                     coupons: (res.data.data).slice(0, 3),
                                     showCoupon: true,
@@ -186,6 +236,9 @@ Page({
                               }     
                         }
                       })
+                    }
+                  });
+                      
                 }
               }else{
                 //如果token过期或不存在，重新登录
@@ -211,8 +264,6 @@ updateUserInfo(){
         that.toLogin();
         that.updateUserInfo();
       }
-      
-
     }
   })
 },
@@ -274,6 +325,7 @@ updateUserInfo(){
   },
   onLoad: function (opt) {
     var that = this;
+  
     //显示分享按钮
     wx.showShareMenu({
       withShareTicket: true,
@@ -283,20 +335,19 @@ updateUserInfo(){
       }
     });
     //是否显示分享引导
-    wx.getStorage({
-      key: 'should_show_share_app_mask',
-      success: function(res) {      
-        that.setData({
-          showMask: res.data
-        });
-      },
-      fail:function(){
-        that.setData({
-          showMask: true
-        });
-
-      }
-    });
+    // wx.getStorage({
+    //   key: 'should_show_share_app_mask',
+    //   success: function(res) {      
+    //     that.setData({
+    //       showMask: res.data
+    //     });
+    //   },
+    //   fail:function(){
+    //     that.setData({
+    //       showMask: true
+    //     });
+    //   }
+    // });
     if(opt){
     if (opt.uid) {
       that.setData({
@@ -404,7 +455,7 @@ updateUserInfo(){
     var that = this;
     console.log('/page/main/index/index?uid=' + that.data.userId +" rootUid: ret.data.rootUid,"+that.data.rootUid)
     return {
-      title: '家居mall',
+      title: '点我得红包，最高100元',
       path: '/page/main/index/index?uid=' + that.data.userId+"&rootUid="+that.data.rootUid,
       success: function (res) {
         wx.request({
