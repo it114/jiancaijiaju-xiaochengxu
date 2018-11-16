@@ -132,7 +132,7 @@ Page({
 	    des = parseInt(des, 10) / times
 	    return des + ''
   },
-
+  
   /**
    * 用户点击右上角分享
    */

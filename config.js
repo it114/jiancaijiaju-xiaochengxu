@@ -4,11 +4,11 @@
 // 此处主机域名是腾讯云解决方案分配的域名
 // 小程序后台服务解决方案：https://www.qcloud.com/solution/la
 //var host = "https://nanjing-web.jiancaiyg.com";
-// var host = "https://web-dev.texuan.wang"; 
+var host = "https://baoding-web.jiancaiyg.com";
 //var host = "https://web-online.texuan.wang";
 //var host = "http://proxy-wx.texuan.wang:4901";
 //var host = "http://192.168.3.2:8080" ;
-var host = "https://baoding-web.jiancaiyg.com";
+//var host = "https://baoding-web.jiancaiyg.com";
 
 var config = {
   // 下面的地址配合云端 Server 工作
