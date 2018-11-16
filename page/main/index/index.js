@@ -50,6 +50,8 @@ Page({
 
   },
 
+
+
   //一键领取
   receiveCoupon() {
     let that = this;
@@ -119,31 +121,15 @@ Page({
           success: function(res) {
             if (!res.data.data.token || !res.data.data.id) {
               wx.showModal({
-                title: '登录已过期',
+                title: '获取Token超时，请重试！',
                 content: '小程序将无法正常使用,点击确定重新登录。',
                 success: function(res) {
                   if (res.confirm) {
-                    //that.toLogin();
+                    that.toLogin();
                   }
                 }
               })
-
             } else {
-              //检查授权
-              wx.getSetting({
-                success(res) {
-                  //没有授权,弹出授权框
-                  if (!res.authSetting['scope.userInfo']) {
-                    console.log('未授权');
-                    that.setData({
-                      showModel: true
-                    });
-                  } else {
-                    //已经授权,更新用户信息
-                    that.updateUserInfo();
-                  }
-                }
-              });
               that.checkphone();
               that.setData({
                 token: res.data.data.token,
@@ -155,7 +141,21 @@ Page({
                 });
               }
             }
-
+            //检查授权
+            wx.getSetting({
+              success(res) {
+                //没有授权,弹出授权框
+                if (!res.authSetting['scope.userInfo']) {
+                  console.log('未授权');
+                  that.setData({
+                    showModel: true
+                  });
+                } else {
+                  //已经授权,更新用户信息
+                  that.updateUserInfo();
+                }
+              }
+            });
           },
           fail: function(res) {
             wx.showToast({
@@ -173,6 +173,10 @@ Page({
   checkphone() {
     let that = this;
     console.log(that.data.name)
+    if (!that.data.token) {
+      console.log('error token is null,not exec checkphone ');
+      return;
+    }
     wx.request({
       url: config.checkphoneUrl + encodeURIComponent(that.data.token),
       data: {
@@ -225,7 +229,17 @@ Page({
                         }
                       } else {
                         //如果token过期或不存在，重新登录
-                        that.toLogin();
+                        // that.toLogin();
+                        wx.showModal({
+                          title: '请求优惠券超时，请重试！',
+                          content: '小程序将无法正常使用,点击确定重试。',
+                          success: function(res) {
+                            if (res.confirm) {
+                              that.toLogin();
+                              that.checkphone();
+                            }
+                          }
+                        })
                       }
                     }
                   })
@@ -251,7 +265,17 @@ Page({
                       }
                     } else {
                       //如果token过期或不存在，重新登录
-                      that.toLogin();
+                      ///that.toLogin();
+                      wx.showModal({
+                        title: '获取优惠券超时，请重试！',
+                        content: '小程序将无法正常使用,点击确定重试一下。',
+                        success: function(res) {
+                          if (res.confirm) {
+                            that.toLogin();
+                            that.checkphone();
+                          }
+                        }
+                      })
                     }
                   }
                 })
@@ -261,7 +285,17 @@ Page({
           }
         } else {
           //如果token过期或不存在，重新登录
-          that.toLogin();
+          //that.toLogin();
+          wx.showModal({
+            title: '获取优惠券失败 了，请重试！',
+            content: '小程序将无法正常使用,点击确定重试。',
+            success: function(res) {
+              if (res.confirm) {
+                that.toLogin();
+                that.checkphone();
+              }
+            }
+          })
         }
 
       }
@@ -280,8 +314,31 @@ Page({
           data.token = that.data.token;
           that.upUserInfo(data);
         } else {
-          that.toLogin();
-          that.updateUserInfo();
+          //检查授权
+          wx.getSetting({
+            success(res) {
+              //没有授权,弹出授权框
+              if (!res.authSetting['scope.userInfo']) {
+                console.log('未授权');
+                that.setData({
+                  showModel: true
+                });
+                //that.toLogin();
+              } else {
+                //已经授权,更新用户信息
+                wx.showModal({
+                  title: '获取Token异常，请重试！',
+                  content: '小程序将无法正常使用,点击确定重试。',
+                  success: function (res) {
+                    if (res.confirm) {
+                      that.updateUserInfo();
+                    }
+                  }
+                })
+              }
+            }
+          })
+
         }
       }
     })
@@ -307,11 +364,17 @@ Page({
         that.upUserInfo(data);
         that.checkphone();
       } else {
-        that.toLogin();
-        that.updateUserInfo();
+        wx.showModal({
+          title: '获取Token异常，请重试！',
+          content: '小程序将无法正常使用,点击确定重试。',
+          success: function (res) {
+            if (res.confirm) {
+              that.toLogin();
+              that.checkphone();
+            }
+          }
+        })
       }
-
-
     } else {
       //用户拒绝授权
       wx.showModal({
@@ -327,19 +390,15 @@ Page({
                     showModel: false
                   });
                   that.updateUserInfo();
-
                 }
               },
               fail: function(res) {
                 console.log('用户未同意授权')
-
               }
             })
-
           }
         }
       })
-
     }
   },
   onLoad: function(opt) {
@@ -383,7 +442,7 @@ Page({
         })
       }
     }
-
+    console.log('onload get storage before ');
     //获取本地缓存用户信息
     wx.getStorage({
       key: "userInfo",
@@ -392,9 +451,19 @@ Page({
       },
       success: function(res) {
         if (!res.data.data.id || !res.data.data.token) {
-          that.toLogin();
-          that.updateUserInfo();
+          console.log('onload get storage success,token invalid  ');
+          wx.showModal({
+            title: '获取Token超时，请重试！',
+            content: '小程序将无法正常使用,点击确定重新登录。',
+            success: function(res) {
+              if (res.confirm) {
+                that.toLogin();
+                that.updateUserInfo();
+              }
+            }
+          })
         } else {
+          console.log('onload get storage success,token valid  ');
           that.setData({
             name: res.data.data.name,
             uid: res.data.data.id,
@@ -412,9 +481,11 @@ Page({
 
       },
       fail: function() {
+        console.log('onload get storage fail  ');
         //检查授权
         wx.getSetting({
           success(res) {
+            console.log('onload get storage fail getSetting ' + res.authSetting['scope.userInfo']);
             //没有授权,弹出授权框
             if (!res.authSetting['scope.userInfo']) {
               console.log('未授权');
@@ -423,8 +494,16 @@ Page({
               });
               that.toLogin();
             } else {
-              //已经授权,更新用户信息
-              that.updateUserInfo();
+              wx.showModal({
+                title: '获取用户信息失败！',
+                content: '小程序将无法正常使用,点击确定重试。',
+                success: function (res) {
+                  if (res.confirm) {
+                    that.toLogin();
+                    that.updateUserInfo();
+                  }
+                }
+              })
             }
           }
         })
