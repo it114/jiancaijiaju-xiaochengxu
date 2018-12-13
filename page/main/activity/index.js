@@ -55,11 +55,21 @@ showDialog:function(){
         },
         method: 'post',
         success: function (res) {
-          that.setData({
-            prizeMoney:res.data.data
+          //{"success":true,"data":0.66,"code":0}
+          if (res.data.data == 0) {
+            wx.showModal({
+              title: '获取红包失败！',
+              content: '可能已经被抢光拉！点击确认之后，重试领取红包。',
+              success: function (res) { }
+            })
+          } else {
+            that.setData({
+              prizeMoney: res.data.data,
+              shareview: true,
+              selectview: false,
 
-
-          })
+            })
+          }
 
         }
 
@@ -187,18 +197,21 @@ bangPhone : function(){
               method: 'post',
               success: function (res) {
                 wx.hideLoading();
-                that.setData({
-                   prizeMoney:res.data.data,
-                   shareview:true,
-                   selectview:false,
-      
-               })
-      
+                if (res.data.data == 0) {
+                  wx.showModal({
+                    title: '获取红包失败！',
+                    content: '可能已经被抢光拉！点击确认之后，重试领取红包。',
+                    success: function (res) {}
+                  })
+                } else {
+                  that.setData({
+                    prizeMoney: res.data.data,
+                    shareview: true,
+                    selectview: false,
 
-              
-                
+                  })
+                }  
               }
-      
             }) 
             util_js.setStrg("userInfo", res.data, function () {
 

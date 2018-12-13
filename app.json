@@ -23,13 +23,7 @@
                 "iconPath": "icon/index.png",
                 "selectedIconPath": "icon/index_sel.png",
                 "text": "首页"
-            },
-           {
-            "pagePath": "page/main/forum/forum",
-            "iconPath": "icon/forum.png",
-            "selectedIconPath": "icon/forum_sel.png",
-            "text": "圈子"
-          },
+            }, 
           
             {
                 "pagePath": "page/main/mine/mine",

@@ -1,7 +1,6 @@
 <!-- <image  model="aspectFill" style='height:{{winWidth}}px' src="http://store.jiancaiyg.com/storage/4724*2362*471d5f12a51e52fa0b7df56012889881.jpg"></image>
 <image  model="aspectFill" style='height:{{winWidth}}px' src="http://store.jiancaiyg.com/storage/1914*1080*a75c8f230eb66faca49a759b0eda005c.jpg"></image> -->
 <!-- <image  model="aspectFill" style='height:{{winWidth}}px' src="../../images/advertise_03.jpg"></image> -->
-
-<image  model="aspectFill"  style='height:{{winWidth}}px' src="http://test.apm.wang/assets/mall-001.png"></image>
-<image  model="aspectFill"  style='height:{{winWidth}}px' src="http://test.apm.wang/assets/mall-002.png"></image>
-<image  model="aspectFill"  style='height:{{winWidth}}px' src="http://test.apm.wang/assets/mall-003.png"></image>
+<image  model="aspectFill"  style='height:{{winWidth}}px' src="http://test.apm.wang/assets/jiajumall/baotou/1.jpg"></image>
+<image  model="aspectFill"  style='height:{{winWidth}}px' src="http://test.apm.wang/assets/jiajumall/baotou/2.jpg"></image>
+<image  model="aspectFill"  style='height:{{winWidth}}px' src="http://test.apm.wang/assets/jiajumall/baotou/3.jpg"></image>
